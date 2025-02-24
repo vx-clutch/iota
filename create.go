@@ -1,4 +1,4 @@
-package write
+package create
 
 func Create(name string, lang string) error {
   // code to copy template 
