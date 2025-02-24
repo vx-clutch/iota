@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"iota/create"
 )
 
 //go:embed project.layouts/c/*
@@ -18,10 +19,5 @@ func main() {
 		fmt.Println("iota: fatal: incorrect arguments.\nusage: iota <language> <name>")
 		return
 	}
-	name := os.Args[1]
-	// lang := os.Args[2]
-	err := os.Mkdir(name, 0644)
-	if err != nil {
-		log.Fatal(err)
-	}
+	Create(name, lang)
 }
