@@ -1,3 +1,3 @@
 # ι
-# iota
+### iota
 An opinionated project init tool
