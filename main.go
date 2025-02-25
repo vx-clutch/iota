@@ -1,23 +1,18 @@
 package main
 
 import (
-	"embed"
-	"fmt"
-	"log"
 	"os"
-	"iota/create"
+	"iota/pkg/errx"
+	"iota/pkg/create"
 )
-
-//go:embed project.layouts/c/*
-var cProject embed.FS
 
 func main() {
 	if len(os.Args) < 3 {
-		fmt.Println("iota: fatal: not enough arguments.\nusage: iota <language> <name>")
+		errx.Errx(3, true, "not enough arguments.")
 		return
 	} else if len(os.Args) != 3 {
-		fmt.Println("iota: fatal: incorrect arguments.\nusage: iota <language> <name>")
+		errx.Errx(3, true, "incorrect argument format.")
 		return
 	}
-	Create(name, lang)
+	create.Create(os.Args[1], os.Args[2])
 }
