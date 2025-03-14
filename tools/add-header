@@ -39,7 +39,7 @@ if [[ "$#" -lt 1 ]]; then
   exit 1
 fi
 
-for file in "$@"; do
+for file in "$@:1"; do
   if [[ ! -f "$file" ]]; then
     echo "Error: File '$file' not found, skipping."
     continue
