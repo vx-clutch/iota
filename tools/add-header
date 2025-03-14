@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-header="// Copyright (C) 2025 $1 ( $2 )
+header="// Copyright (C) 2025 $1 ( owestness@gmail.com )
 // See end of file for extended copyright information.\n"
 footer="
 /* iota is an opinionated init tool.
