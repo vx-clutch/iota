@@ -6,7 +6,7 @@
 int
 pwarning(const char *message)
 {
-  fprintf(stderr, "%s%s%s: %swarning%s: %s\n", WHITE, COMPILER_NAME, RESET,
+  fprintf(stderr, "%s%s%s: %swarning%s: %s\n", WHITE, NAME, RESET,
           PURPLE, RESET, message);
   return 0;
 }
@@ -16,7 +16,7 @@ pwarningf(const char *format, ...)
 {
   va_list args;
   va_start(args, format);
-  fprintf(stderr, "%s%s%s: %swarning%s: ", WHITE, COMPILER_NAME, RESET, PURPLE,
+  fprintf(stderr, "%s%s%s: %swarning%s: ", WHITE, NAME, RESET, PURPLE,
           RESET);
   vfprintf(stderr, format, args);
   fprintf(stderr, "\n");
