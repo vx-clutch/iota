@@ -4,7 +4,7 @@
 #define EREROR_H
 
 #include "../config.h"
-#include "../parse_args.h"
+#include "../options.h"
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
