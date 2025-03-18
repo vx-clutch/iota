@@ -2,4 +2,4 @@
   - Fix update header script
   - parse arguments
       - positional and flags
-      - iota <PROG NAME> <LANGUAGE> <OPTIONAL FLAGS>
+      - iota \<PROG NAME> \<LANGUAGE> \<OPTIONAL FLAGS>
