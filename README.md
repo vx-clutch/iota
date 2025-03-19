@@ -2,5 +2,5 @@
 ### iota
 An opinionated project init tool
 
-# Quick Start
+### Quick Start
     iota <NAME> <LANGUAGE> <OPTIONS>
