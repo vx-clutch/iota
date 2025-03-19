@@ -9,6 +9,7 @@ config.status
 stamp-h1
 iota/.deps/main.Po
 Makefile
+iota/Makefile
 
 # Objects
 *.o
