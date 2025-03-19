@@ -1,11 +1,26 @@
-#ifndef CONFIG_H
-#define CONFIG_H
+/* iota/config.h.  Generated from config.h.in by configure.  */
+/* iota/config.h.in.  Generated from configure.ac by autoheader.  */
 
-#define VERSION "alpha"
-#define YEAR 2025
-#define NAME "iota"
+/* Name of package */
+#define PACKAGE "iota"
 
-// 0 for release
-#define FORCE_VERBOSE 0
+/* Define to the address where bug reports for this package should be sent. */
+#define PACKAGE_BUGREPORT "owestness@gmail.com"
 
-#endif
+/* Define to the full name of this package. */
+#define PACKAGE_NAME "iota"
+
+/* Define to the full name and version of this package. */
+#define PACKAGE_STRING "iota 1.0"
+
+/* Define to the one symbol short name of this package. */
+#define PACKAGE_TARNAME "iota"
+
+/* Define to the home page for this package. */
+#define PACKAGE_URL ""
+
+/* Define to the version of this package. */
+#define PACKAGE_VERSION "1.0"
+
+/* Version number of package */
+#define VERSION "1.0"

@@ -1,1 +1,16 @@
+# Stinky editor garbage
 .vscode/
+
+# Build system files
+autom4te.cache/
+config.log
+config.status
+Makefile.in
+compile
+missing
+
+# Objects
+*.o
+*.a
+*.so
+*.la
