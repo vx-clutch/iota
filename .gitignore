@@ -8,9 +8,13 @@ config.status
 *.in
 compile
 missing
+stamp-h1
+iota/.deps/main.Po
+Makefile
 
 # Objects
 *.o
 *.a
 *.so
 *.la
+iota
