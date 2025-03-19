@@ -6,7 +6,6 @@ autom4te.cache/
 config.log
 config.status
 *.in
-compile
 missing
 stamp-h1
 iota/.deps/main.Po
