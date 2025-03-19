@@ -1,0 +1,55 @@
+Installation Instructions for iota
+
+Prerequisites
+
+Before installing, make sure you have the following tools and libraries:
+
+- GNU Autotools (Autoconf, Automake, Libtool)
+- GCC or another compatible C/C++ compiler
+- Make
+- [List any other dependencies your project requires]
+
+Building from Source
+
+1. Prepare the build system:
+   autoreconf -i
+
+2. Configure the project:
+   ./configure [OPTIONS]
+   To see a list of available options, run:
+   ./configure --help
+
+3. Compile the project:
+   make
+   You can speed up compilation by using multiple jobs:
+   make -j$(nproc)
+
+4. Optionally, run tests:
+   make check
+
+5. Install the project:
+   make install
+   You may need superuser privileges:
+   sudo make install
+
+6. Verify the installation:
+   iota --version
+
+Uninstallation
+
+To remove the installed files, run:
+make uninstall
+
+Cleaning Up
+
+To clean up intermediate files:
+make clean
+
+To remove all generated files and configuration:
+make distclean
+
+Troubleshooting
+
+If you encounter errors during configuration, make sure all dependencies are installed and up-to-date. You can check for missing libraries or tools in the output of the ./configure step.
+
+For further assistance, please open an issue on the GitHub <https://github.com/vx-clutch/iota>.
