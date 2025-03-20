@@ -6,7 +6,7 @@
 void
 pfatal(const char *message)
 {
-  fprintf(stderr, "%s%s%s: %sfatal error%s: %s\ncompilation terminated.\n",
+  fprintf(stderr, "%s%s%s: %sfatal error%s: %s\nproject terminated.\n",
           WHITE, PACKAGE_NAME, RESET, RED, RESET, message);
   exit(EXIT_FAILURE);
 }
@@ -19,7 +19,7 @@ pfatalf(const char *format, ...)
   fprintf(stderr, "%s%s%s: %sfatal error%s: ", WHITE, PACKAGE_NAME, RESET, RED,
           RESET);
   vfprintf(stderr, format, args);
-  fprintf(stderr, "\ncompilation terminated.\n");
+  fprintf(stderr, "\nproject terminated.\n");
   va_end(args);
   exit(EXIT_FAILURE);
 }
