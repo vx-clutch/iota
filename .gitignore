@@ -3,17 +3,13 @@
 
 # Build system files
 autom4te.cache/
+*.in
+*Makefile*
+aclocal.m4
 config.log
 config.status
-*.in
 stamp-h1
-Makefile
-iota/Makefile
-aclocal.m4
 
 # Objects
 *.o
-*.a
-*.so
-*.la
-iota
+iota/iota
