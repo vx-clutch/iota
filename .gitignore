@@ -3,6 +3,7 @@
 
 # Build system files
 autom4te.cache/
+iota/.deps/main.Po
 *.in
 *Makefile*
 aclocal.m4
