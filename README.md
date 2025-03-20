@@ -5,5 +5,5 @@ An opinionated project init tool
 ### Quick Start
     iota <NAME> <LANGUAGE> <OPTIONS>
 
-#### Example grammer C
+#### Example for C
     iota foo c
