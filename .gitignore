@@ -9,6 +9,7 @@ config.status
 stamp-h1
 Makefile
 iota/Makefile
+aclocal.m4
 
 # Objects
 *.o
