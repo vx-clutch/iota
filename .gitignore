@@ -11,6 +11,7 @@ config.log
 config.status
 configure~
 stamp-h1
+iota/config.h
 
 # Objects
 *.o
