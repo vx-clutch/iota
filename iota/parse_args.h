@@ -1,8 +1,8 @@
 // Copyright (C) 2025 vx-clutch ( owestness@gmail.com )
 // See end of file for extended copyright information.
 
-#ifndef ARG_PASS_H
-#define ARG_PASS_H
+#ifndef PARSE_ARGS_H
+#define PARSE_ARGS_H
 
 int parse_args(int argc, char *argv[]);
 
