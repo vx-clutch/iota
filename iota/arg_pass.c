@@ -2,6 +2,20 @@
 // See end of file for extended copyright information.
 
 #include "arg_pass.h"
+#include "options.h"
+
+__options options = {
+    .verbose     = 0,
+    .debug       = 0,
+    .git         = 0,
+    .l_bsd       = 0,
+    .l_gpl       = 0,
+    .l_mit       = 0,
+    .no_build    = 0,
+    .no_markdown = 0,
+    .name        = "",
+    .language    = DEFAULT,
+};
 
 int
 parse_args(int argc, char **argv)
