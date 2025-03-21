@@ -12,10 +12,10 @@ main(int argc, char **argv)
   pwarning("iota is in its *alpha* stages of development expect missing features or other errors. Please report any bugs to the developers.");
   int status = parse_args(argc, argv);
   if (status) {
-      plog(FAIL "Somewith went wrong with parse_args");
+      plog(FAIL "parse_args");
     return EXT_FAILURE;
   }
-  plog(OK "parse_args worked");
+  plog(OK "parse_args");
   return EXIT_SUCCESS;
 }
 
