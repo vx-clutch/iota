@@ -3,7 +3,9 @@
 
 # Build system files
 autom4te.cache/
-iota/.deps/main.Po
+iota/.deps/
+iota/syslog/.deps
+iota/syslog/.dirstamp
 *Makefile
 aclocal.m4
 config.log

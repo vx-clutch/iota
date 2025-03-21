@@ -35,12 +35,12 @@ footer="
 "
 
 if [[ "$#" -lt 1 ]]; then
-  echo "Usage: $0 file1 [file2 ...]"
+  echo "Usage: $0 name file1 [file2 ...]"
   exit 1
 fi
 
-for file in "$@:1"; do
-  if [[ ! -f "$file" ]]; then
+for file in "$@"; do
+  if [[ ! -f "$file" ]] && [[ "$file" != "$1" ]]; then
     echo "Error: File '$file' not found, skipping."
     continue
   fi
