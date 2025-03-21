@@ -17,6 +17,7 @@ typedef enum
 
 typedef struct
 {
+  uint8_t __parsed;
   uint8_t verbose;
   uint8_t debug;
   uint8_t git;
