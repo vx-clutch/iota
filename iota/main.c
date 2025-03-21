@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "syslog/error.h"
-#include "arg_pass.h"
+#include "parse_args.h"
 
 int
 main(int argc, char **argv)
@@ -13,7 +13,7 @@ main(int argc, char **argv)
   int status = parse_args(argc, argv);
   if (status) {
       plog(FAIL "parse_args");
-    return EXT_FAILURE;
+    return EXIT_FAILURE;
   }
   plog(OK "parse_args");
   return EXIT_SUCCESS;
