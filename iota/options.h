@@ -4,28 +4,29 @@
 #ifndef OPT_H
 #define OPT_H
 
-#include <stdio.h>
 #include <stdint.h>
+#include <stdio.h>
 
-typedef enum{
-    C,
-    CXX,
-    PYTHON,
-    DEFAULT,
+typedef enum
+{
+  C,
+  CXX,
+  PYTHON,
+  DEFAULT,
 } lang_t;
 
-typedef struct 
+typedef struct
 {
-    uint8_t verbose;
-    uint8_t debug;
-    uint8_t git;
-    uint8_t l_bsd;
-    uint8_t l_gpl;
-    uint8_t l_mit;
-    uint8_t no_build;
-    uint8_t no_markdown;
-    char* name;
-    lang_t language;
+  uint8_t verbose;
+  uint8_t debug;
+  uint8_t git;
+  uint8_t l_bsd;
+  uint8_t l_gpl;
+  uint8_t l_mit;
+  uint8_t no_build;
+  uint8_t no_markdown;
+  char *name;
+  lang_t language;
 } __options;
 
 extern __options options;
@@ -61,4 +62,3 @@ extern __options options;
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-
