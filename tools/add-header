@@ -39,12 +39,12 @@ if [[ "$#" -lt 1 ]]; then
   exit 1
 fi
 
-for file in "$@"; do
-  if [[ ! -f "$file" ]] && [[ "$file" != "$1" ]]; then
+for file in "${@:2}"; do
+  if [[ ! -f "$file" ]]; then
     echo "Error: File '$file' not found, skipping."
     continue
   fi
 
-  echo -e "$header\n$(cat "$file")\n$footer" >"$file"
+  echo -e "$header\n$(cat "$file")\n$footer" > "$file"
   echo "Processed file: $file"
 done
