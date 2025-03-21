@@ -1,3 +1,3 @@
 bin_PROGRAMS = iota
-iota_SOURCES = main.c syslog/warning.c syslog/colors.c
-# syslog/colors.c syslog/debug.c syslog/error.c syslog/fatal.c syslog/log.c syslog/warning.c
+iota_SOURCES = main.c syslog/warning.c syslog/colors.c syslog/log.c parse_args.c
+include_HEADERS = config.h parse_args.h syslog/error.h
