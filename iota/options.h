@@ -7,12 +7,12 @@
 #include <stdio.h>
 #include <stdint.h>
 
-enum lang_t {
+typedef enum{
     C,
     CXX,
     PYTHON,
     DEFAULT,
-};
+} lang_t;
 
 typedef struct 
 {

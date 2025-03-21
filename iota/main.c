@@ -2,8 +2,12 @@
 // See end of file for extended copyright information.
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "syslog/error.h"
 #include "arg_pass.h"
+
+int argc;
+char* argv[];
 
 int
 main(void)
