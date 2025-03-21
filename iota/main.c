@@ -3,11 +3,18 @@
 
 #include <stdlib.h>
 #include "syslog/error.h"
+#include "arg_pass.h"
 
 int
 main(void)
 {
   pwarning("iota is in its *alpha* stages of development expect missing features or other errors. Please report any bugs to the developers.");
+  int status = parse_args(argc, argv);
+  if (status) {
+      plog(FAIL "Somewith went wrong with parse_args");
+    return EXT_FAILURE;
+  }
+  plog(OK "parse_args worked");
   return EXIT_SUCCESS;
 }
 
