@@ -4,34 +4,27 @@ Prerequisites
 
 Before installing, make sure you have the following tools and libraries:
 
-- GNU Autotools (Autoconf, Automake, Libtool)
 - GCC or another compatible C/C++ compiler
 - Make
 
 Building from Source
 
-1. Prepare the build system:
-   autoreconf -i
-
-2. Configure the project:
+1. Configure iota:
    ./configure [OPTIONS]
    To see a list of available options, run:
    ./configure --help
 
-3. Compile the project:
+2. Compile iota:
    make
    You can speed up compilation by using multiple jobs:
    make -j$(nproc)
 
-4. Optionally, run tests:
-   make check
-
-5. Install the project:
+3. Install iota:
    make install
    You may need superuser privileges:
    sudo make install
 
-6. Verify the installation:
+4. Verify the installation:
    iota --version
 
 Uninstallation
