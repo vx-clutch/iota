@@ -6,6 +6,7 @@ autom4te.cache/
 iota/.deps/main.Po
 *.in
 *Makefile*
+!Makefile.in
 aclocal.m4
 config.log
 config.status
