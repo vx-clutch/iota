@@ -2,7 +2,6 @@
 // See end of file for extended copyright information.
 
 #include <stdlib.h>
-#include <stdio.h>
 #include "syslog/error.h"
 #include "parse_args.h"
 
