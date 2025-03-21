@@ -1,17 +1,20 @@
 // Copyright (C) 2025 vx-clutch ( owestness@gmail.com )
 // See end of file for extended copyright information.
 
-#include <stdlib.h>
-#include "syslog/error.h"
 #include "parse_args.h"
+#include "syslog/error.h"
+#include <stdlib.h>
 
 int
 main(int argc, char **argv)
 {
-  pwarning("iota is in its *alpha* stages of development expect missing features or other errors. Please report any bugs to the developers.");
+  pwarning(
+      "iota is in its *alpha* stages of development expect missing features or "
+      "other errors. Please report any bugs to the developers.");
   int status = parse_args(argc, argv);
-  if (status) {
-      plog(FAIL "parse_args");
+  if (status)
+  {
+    plog(FAIL "parse_args");
     return EXIT_FAILURE;
   }
   plog(OK "parse_args");
@@ -47,4 +50,3 @@ main(int argc, char **argv)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-
