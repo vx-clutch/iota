@@ -4,7 +4,6 @@
 #ifndef OPT_H
 #define OPT_H
 
-#include <cstdint>
 #include <stdio.h>
 #include <stdint.h>
 
