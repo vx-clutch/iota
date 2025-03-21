@@ -4,9 +4,7 @@
 # Build system files
 autom4te.cache/
 iota/.deps/main.Po
-*.in
-*Makefile*
-!Makefile.in
+*Makefile
 aclocal.m4
 config.log
 config.status
