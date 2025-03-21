@@ -6,11 +6,8 @@
 #include "syslog/error.h"
 #include "arg_pass.h"
 
-int argc;
-char* argv[];
-
 int
-main(void)
+main(int argc, char **argv)
 {
   pwarning("iota is in its *alpha* stages of development expect missing features or other errors. Please report any bugs to the developers.");
   int status = parse_args(argc, argv);
