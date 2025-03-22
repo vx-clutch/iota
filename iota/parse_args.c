@@ -4,6 +4,7 @@
 #include "parse_args.h"
 #include "options.h"
 #include "syslog/error.h"
+#include "config.h"
 #include <getopt.h>
 #include <stdio.h>
 
@@ -104,7 +105,12 @@ print_help(void)
 void
 print_version()
 {
-  printf("uhh idk.");
+  plog(INFO "call to print_version");
+  printf(
+      "vtc (VTC) %s 2024-%d (%s)\nCopyright (C) %d vx-clutch\nThis is free "
+      "software; see the source for copying conditions. There is NO\nwarranty; "
+      "not even for MERCHANTABLITY or FITNESS FOR A PARTICULAR PURPOSE\n",
+      PACKAGE_VERSION, COPYRIGHT_YEAR, PLATFORM, COPYRIGHT_YEAR);
 }
 
 /* iota is an opinionated init tool.

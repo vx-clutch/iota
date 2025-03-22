@@ -1,5 +1,8 @@
 /* iota/config.h.in.  Generated from configure.ac by autoheader.  */
 
+/* Force iota into verbose mode regardless of flags */
+#undef FORCE_VERBOSE
+
 /* Name of package */
 #undef PACKAGE
 
