@@ -3,9 +3,6 @@
 /* Current copyright year */
 #undef COPYRIGHT_YEAR
 
-/* Force iota into verbose mode regardless of flags */
-#undef FORCE_VERBOSE
-
 /* Name of package */
 #undef PACKAGE
 

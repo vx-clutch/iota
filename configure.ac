@@ -1,7 +1,7 @@
 AC_INIT([iota], [1.0], [owestness@gmail.com])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
 
-AC_DEFINE([FORCE_VERBOSE], [0], [Force iota into verbose mode regardless of flags])
+# AC_DEFINE([FORCE_VERBOSE], [], [Force iota into verbose mode regardless of flags])
 AC_DEFINE([COPYRIGHT_YEAR], [2025], [Current copyright year])
 
 platform="$(uname -o) $(uname -r)"

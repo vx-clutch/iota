@@ -2865,14 +2865,11 @@ END
 fi
 
 
-
-printf "%s\n" "#define FORCE_VERBOSE 0" >>confdefs.h
-
+# AC_DEFINE([FORCE_VERBOSE], [], [Force iota into verbose mode regardless of flags])
 
 printf "%s\n" "#define COPYRIGHT_YEAR 2025" >>confdefs.h
 
 
-# Capture the platform string and store it in a shell variable
 platform="$(uname -o) $(uname -r)"
 
 printf "%s\n" "#define PLATFORM \"$platform\"" >>confdefs.h
