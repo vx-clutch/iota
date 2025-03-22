@@ -2,11 +2,12 @@
 // See end of file for extended copyright information.
 
 #include "parse_args.h"
+#include "config.h"
 #include "options.h"
 #include "syslog/error.h"
-#include "config.h"
 #include <getopt.h>
 #include <stdio.h>
+#include <string.h>
 
 __options options = {
     .verbose = 0,
@@ -21,10 +22,13 @@ __options options = {
     .language = DEFAULT,
 };
 
-void print_help();
-void print_version();
+void
+print_help();
+void
+print_version();
 
-int parse_args(int argc, char **argv)
+int
+parse_args(int argc, char **argv)
 {
   int opt, option_index = 0;
   struct option long_options[] = {
@@ -35,9 +39,12 @@ int parse_args(int argc, char **argv)
       {"no-build", no_argument, 0, 9}, {0, 0, 0, 0}};
   opterr = 0;
 
-  while ((opt = getopt_long(argc, argv, "v", long_options, &option_index)) != -1) {
+  while ((opt = getopt_long(argc, argv, "v", long_options, &option_index)) !=
+         -1)
+  {
     plogf(INFO "opt: '%s'", argv[optind - 1]);
-    switch (opt) {
+    switch (opt)
+    {
     case 'v':
       options.verbose = 1;
       break;
@@ -77,26 +84,43 @@ int parse_args(int argc, char **argv)
     }
   }
 
-  pdebug("debug", "debug works");
-
   options.__parsed = 1;
   plog(INFO "checking positional arguments.");
-  if (optind >= argc) {
+  if (optind >= argc)
+  {
     pfatal("no positional arguments.");
     return 1;
   }
 
-  if (argc - optind < 1) {
+  if (argc - optind < 2)
+  {
     pfatal("not enough arguments");
     return 1;
   }
 
+// macro for the compares
+#define ifs(k, p)                                                              \
+  if (strcmp(pos_two, k))                                                      \
+  {                                                                            \
+    options.language = p;                                                      \
+  }
+
   options.name = argv[optind++];
+  char *pos_two = argv[optind + 2];
+  pdebug("pos_two", pos_two);
+  ifs("C", C)
+
+  pdebugf("pos", "name: %s lang %s", options.name, (char *)options.language);
+  if (options.language == DEFAULT)
+    pdebug("comparing", "default");
+  if (options.language == C)
+    pdebug("comparing", "c");
 
   return 0;
 }
 
-void print_help(void)
+void
+print_help(void)
 {
   printf("Usage: iota [options] file...\n\n");
   printf("Options:\n");
@@ -111,7 +135,8 @@ void print_help(void)
   printf("  -v\t\tEnables verbose output.\n");
 }
 
-void print_version()
+void
+print_version()
 {
   plog(INFO "call to print_version");
   printf(
