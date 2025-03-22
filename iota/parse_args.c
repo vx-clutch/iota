@@ -90,6 +90,7 @@ parse_args(int argc, char **argv)
     pfatal("not enough arguments");
   options.name = argv[1];
   options.language = (lang_t)argv[2];
+  pdebugf("lang_t", "%s", (char*) options.language);
   return 0;
 }
 

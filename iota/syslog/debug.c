@@ -7,8 +7,8 @@
 int
 __pdebug(int line, const char *file, const char *desc, const char *message)
 {
-  if (!options.debug)
-    return 0;
+  // if (!options.debug)
+    // return 0;
   printf("%s%s%s: %sdebug: %s:%d%s: %s: %s\n", WHITE, PACKAGE_NAME, RESET,
          WHITE, file, line, RESET, desc, message);
   return 0;
@@ -17,8 +17,8 @@ __pdebug(int line, const char *file, const char *desc, const char *message)
 int
 __pdebugf(int line, const char *file, const char *desc, const char *format, ...)
 {
-  if (!options.debug)
-    return 0;
+  // if (!options.debug)
+    // return 0;
   va_list args;
   va_start(args, format);
   printf("%s%s%s: %sdebug: %s:%d%s: ", WHITE, PACKAGE_NAME, RESET, WHITE, file,
