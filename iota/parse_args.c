@@ -83,6 +83,13 @@ parse_args(int argc, char **argv)
     }
     options.__parsed = 1;
   }
+  plog(INFO "checking positional arguments.");
+  if (optind >= argc)
+    pfatal("no positional arguments.");
+  if (argc < 2)
+    pfatal("not enough arguments");
+  options.name = argv[1];
+  options.language = (lang_t)argv[2];
   return 0;
 }
 
