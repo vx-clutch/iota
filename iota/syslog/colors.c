@@ -5,10 +5,11 @@
 
 const char *RESET = "[0m";
 const char *RED = "[1;91m";
-const char *PURPLE = "[0;95m";
-const char *WHITE = "[0;97m";
-const char *GREEN = "[1;32m";
 const char *YELLOW = "[0;33m";
+const char *GREEN = "[1;32m";
+const char *PURPLE = "[0;95m";
+const char *BLUE = "[0;94m";
+const char *WHITE = "[0;97m";
 
 /* vtc is a simple and extensible compiler.
  * Copyright (C) 2024 vx-clutch

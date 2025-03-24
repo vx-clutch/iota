@@ -3,13 +3,13 @@
 
 #include "error.h"
 
-int
-pwarning(const char *message)
-{
-  fprintf(stderr, "%s%s%s: %swarning%s: %s\n", WHITE, PACKAGE_NAME, RESET,
-          PURPLE, RESET, message);
-  return 0;
-}
+// int
+// pwarning(const char *message)
+// {
+//   fprintf(stderr, "%s%s%s: %swarning%s: %s\n", WHITE, PACKAGE_NAME, RESET,
+//           PURPLE, RESET, message);
+//   return 0;
+// }
 
 void
 pwarningf(const char *format, ...)

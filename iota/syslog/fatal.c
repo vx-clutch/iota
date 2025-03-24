@@ -3,13 +3,13 @@
 
 #include "error.h"
 
-void
-pfatal(const char *message)
-{
-  fprintf(stderr, "%s%s%s: %sfatal error%s: %s\ngeneration terminated.\n", WHITE,
-          PACKAGE_NAME, RESET, RED, RESET, message);
-  exit(EXIT_FAILURE);
-}
+// void
+// pfatal(const char *message)
+// {
+//   fprintf(stderr, "%s%s%s: %sfatal error%s: %s\ngeneration terminated.\n",
+//           WHITE, PACKAGE_NAME, RESET, RED, RESET, message);
+//   exit(EXIT_FAILURE);
+// }
 
 void
 pfatalf(const char *format, ...)

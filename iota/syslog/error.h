@@ -17,38 +17,39 @@ extern const char *WHITE;
 extern const char *GREEN;
 extern const char *YELLOW;
 
-void
-pfatal(const char *message);
+extern const char *BLUE;
+
+// void
+// pfatal(const char *message);
 
 void
 pfatalf(const char *format, ...);
 
-#define perror __perror
-int
-__perror(const char *message);
+// #define perror __perror
+// int
+// __perror(const char *message);
 
 void
 perrorf(const char *format, ...);
 
 
-int
-pwarning(const char *message);
+// int
+// pwarning(const char *message);
 
 void
 pwarningf(const char *format, ...);
 
-#define pdebug(desc, message) __pdebug(__LINE__, __FILE__, desc, message)
+// #define pdebug(desc, message) __pdebug(__LINE__, __FILE__, desc, message)
 #define pdebugf(desc, message, ...) __pdebugf(__LINE__, __FILE__, desc, message, ##__VA_ARGS__)
 
-int
-__pdebug(int line, const char *file, const char *desc, const char *message);
+// int
+// __pdebug(int line, const char *file, const char *desc, const char *message);
 
 int
 __pdebugf(int line, const char *file, const char *desc, const char *format, ...);
 
-void
-plog(int status, const char *message);
-
+// void
+// plog(int status, const char *message);
 void
 plogf(int status, const char *format, ...);
 
@@ -56,6 +57,9 @@ plogf(int status, const char *format, ...);
 #define OK 1,
 #define WARN 2,
 #define FAIL 3,
+
+void
+pnotef(const char *format, ...);
 
 #endif
 

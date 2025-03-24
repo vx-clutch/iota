@@ -7,7 +7,12 @@
 #include "syslog/error.h"
 #include <getopt.h>
 #include <stdio.h>
-#include <string.h>
+#include <strings.h>
+
+#define langcmp(k, p)                                                          \
+  if (strcasecmp(lang_arg, k))                                                 \
+    options.language = p;                                                      \
+  found++
 
 __options options = {
     .verbose = 0,
@@ -85,37 +90,35 @@ parse_args(int argc, char **argv)
   }
 
   options.__parsed = 1;
-  plog(INFO "checking positional arguments.");
+  plogf(INFO "checking positional arguments.");
   if (optind >= argc)
   {
-    pfatal("no positional arguments.");
+    pfatalf("no positional arguments.");
     return 1;
   }
 
-  if (argc - optind < 2)
+  if (argc - optind < 1)
   {
-    pfatal("not enough arguments");
+    pfatalf("not enough arguments");
     return 1;
-  }
-
-// macro for the compares
-#define ifs(k, p)                                                              \
-  if (strcmp(pos_two, k))                                                      \
-  {                                                                            \
-    options.language = p;                                                      \
   }
 
   options.name = argv[optind++];
-  char *pos_two = argv[optind + 2];
-  pdebug("pos_two", pos_two);
-  ifs("C", C)
+  char *lang_arg = argv[optind++];
+  int found;
 
-  pdebugf("pos", "name: %s lang %s", options.name, (char *)options.language);
-  if (options.language == DEFAULT)
-    pdebug("comparing", "default");
-  if (options.language == C)
-    pdebug("comparing", "c");
+  plogf(INFO "Project name was set to %s", options.name);
 
+  langcmp("c", C);
+  langcmp("cxx", CXX);
+  langcmp("cpp", CXX);
+  langcmp("py", PYTHON);
+  langcmp("python", PYTHON);
+
+  if (!found)
+    plogf(FAIL "Could not find language using DEFAULT");
+  else
+    plogf(INFO "Project language was set to %s", "[TODO lang_t to char*]");
   return 0;
 }
 
@@ -138,7 +141,7 @@ print_help(void)
 void
 print_version()
 {
-  plog(INFO "call to print_version");
+  plogf(INFO "call to print_version");
   printf(
       "vtc (VTC) %s 2024-%d (%s)\nCopyright (C) %d vx-clutch\nThis is free "
       "software; see the source for copying conditions. There is NO\nwarranty; "

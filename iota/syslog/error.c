@@ -3,13 +3,13 @@
 
 #include "error.h"
 
-int
-perror(const char *message)
-{
-  fprintf(stderr, "%s%s%s: %serror%s: %s\n", WHITE, PACKAGE_NAME, RESET, RED,
-          RESET, message);
-  return 0;
-}
+// int
+// perror(const char *message)
+// {
+//   fprintf(stderr, "%s%s%s: %serror%s: %s\n", WHITE, PACKAGE_NAME, RESET, RED,
+//           RESET, message);
+//   return 0;
+// }
 
 void
 perrorf(const char *format, ...)
