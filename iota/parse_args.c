@@ -7,12 +7,15 @@
 #include "syslog/error.h"
 #include <getopt.h>
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 
 #define langcmp(k, p)                                                          \
-  if (strcasecmp(lang_arg, k))                                                 \
+  if (strcmp(lang_arg, k))                                                     \
+  {                                                                            \
     options.language = p;                                                      \
-  found++
+    found++;                                                                   \
+    selected = k;                                                              \
+  }
 
 __options options = {
     .verbose = 0,
@@ -106,19 +109,15 @@ parse_args(int argc, char **argv)
   options.name = argv[optind++];
   char *lang_arg = argv[optind++];
   int found;
+  char *selected;
 
   plogf(INFO "Project name was set to %s", options.name);
 
-  langcmp("c", C);
-  langcmp("cxx", CXX);
-  langcmp("cpp", CXX);
-  langcmp("py", PYTHON);
-  langcmp("python", PYTHON);
+  langcmp("c", C) langcmp("cpp", CXX) langcmp("cxx", CXX) langcmp("py", PYTHON)
+      langcmp("python", PYTHON)
 
-  if (!found)
-    plogf(FAIL "Could not find language using DEFAULT");
-  else
-    plogf(INFO "Project language was set to %s", "[TODO lang_t to char*]");
+          if (!found) plogf(FAIL "Could not find language using DEFAULT");
+  else plogf(INFO "Project language was set to %s", selected);
   return 0;
 }
 

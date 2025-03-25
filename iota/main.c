@@ -3,7 +3,7 @@
 
 #include "parse_args.h"
 #include "syslog/error.h"
-#include "common/base.h"
+#include "common/bootstrap.h"
 #include <stdlib.h>
 
 int
@@ -19,7 +19,7 @@ main(int argc, char **argv)
     return EXIT_FAILURE;
   }
   plogf(OK "parse_args");
-  status = b_write(options.name);
+  status = bootstrap(options.name);
   if (status)
   {
     plogf(FAIL "b_write");

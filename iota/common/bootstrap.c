@@ -1,4 +1,4 @@
-#include "base.h"
+#include "bootstrap.h"
 #include "../syslog/error.h"
 #include <stdio.h>
 #include <sys/stat.h>
@@ -8,10 +8,11 @@ struct stat st = {0};
 
 #define exists                                                                 \
   if (err != 0)                                                                \
-  pfatalf("Failure while trying to either write file or directory")
+  pfatalf("while trying to either write file or directory: bootstrap.c:%d",    \
+          __LINE__)
 
 int
-b_write()
+bootstrap()
 {
   FILE *fp;
   int err;
@@ -30,6 +31,7 @@ b_write()
   {
     fp = fopen("README.md", "w");
     err = fprintf(fp, "# %s", options.name);
+    fclose(fp);
     exists;
   }
   else

@@ -106,7 +106,7 @@ am_iota_OBJECTS = main.$(OBJEXT) syslog/warning.$(OBJEXT) \
 	syslog/colors.$(OBJEXT) syslog/log.$(OBJEXT) \
 	parse_args.$(OBJEXT) syslog/error.$(OBJEXT) \
 	syslog/fatal.$(OBJEXT) syslog/debug.$(OBJEXT) \
-	syslog/note.$(OBJEXT) common/base.$(OBJEXT)
+	syslog/note.$(OBJEXT) common/bootstrap.$(OBJEXT)
 iota_OBJECTS = $(am_iota_OBJECTS)
 iota_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -125,7 +125,7 @@ DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/main.Po ./$(DEPDIR)/parse_args.Po \
-	common/$(DEPDIR)/base.Po syslog/$(DEPDIR)/colors.Po \
+	common/$(DEPDIR)/bootstrap.Po syslog/$(DEPDIR)/colors.Po \
 	syslog/$(DEPDIR)/debug.Po syslog/$(DEPDIR)/error.Po \
 	syslog/$(DEPDIR)/fatal.Po syslog/$(DEPDIR)/log.Po \
 	syslog/$(DEPDIR)/note.Po syslog/$(DEPDIR)/warning.Po
@@ -286,8 +286,8 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-iota_SOURCES = main.c syslog/warning.c syslog/colors.c syslog/log.c parse_args.c syslog/error.c syslog/fatal.c syslog/debug.c syslog/note.c common/base.c
-include_HEADERS = config.h parse_args.h syslog/error.h common/base.h
+iota_SOURCES = main.c syslog/warning.c syslog/colors.c syslog/log.c parse_args.c syslog/error.c syslog/fatal.c syslog/debug.c syslog/note.c common/bootstrap.c
+include_HEADERS = config.h parse_args.h syslog/error.h common/bootstrap.h
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -405,7 +405,7 @@ common/$(am__dirstamp):
 common/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) common/$(DEPDIR)
 	@: > common/$(DEPDIR)/$(am__dirstamp)
-common/base.$(OBJEXT): common/$(am__dirstamp) \
+common/bootstrap.$(OBJEXT): common/$(am__dirstamp) \
 	common/$(DEPDIR)/$(am__dirstamp)
 
 iota$(EXEEXT): $(iota_OBJECTS) $(iota_DEPENDENCIES) $(EXTRA_iota_DEPENDENCIES) 
@@ -422,7 +422,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parse_args.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@common/$(DEPDIR)/base.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@common/$(DEPDIR)/bootstrap.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@syslog/$(DEPDIR)/colors.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@syslog/$(DEPDIR)/debug.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@syslog/$(DEPDIR)/error.Po@am__quote@ # am--include-marker
@@ -606,7 +606,7 @@ clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/main.Po
 	-rm -f ./$(DEPDIR)/parse_args.Po
-	-rm -f common/$(DEPDIR)/base.Po
+	-rm -f common/$(DEPDIR)/bootstrap.Po
 	-rm -f syslog/$(DEPDIR)/colors.Po
 	-rm -f syslog/$(DEPDIR)/debug.Po
 	-rm -f syslog/$(DEPDIR)/error.Po
@@ -661,7 +661,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/main.Po
 	-rm -f ./$(DEPDIR)/parse_args.Po
-	-rm -f common/$(DEPDIR)/base.Po
+	-rm -f common/$(DEPDIR)/bootstrap.Po
 	-rm -f syslog/$(DEPDIR)/colors.Po
 	-rm -f syslog/$(DEPDIR)/debug.Po
 	-rm -f syslog/$(DEPDIR)/error.Po
