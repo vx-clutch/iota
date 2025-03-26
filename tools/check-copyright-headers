@@ -7,7 +7,7 @@ fi
 files=$(find iota/ \( -name '*.c' -o -name '*.h' \))
 files+=" $(find . -maxdepth 1 -type f)"
 
-ignore=" README.md COPYING AUTHORS .gitignore .clang-format INSTALL configure.ac Makefile.am iota/Makefile.am iota/config.h"
+ignore=" README.md COPYING AUTHORS .gitignore .clang-format INSTALL configure.ac Makefile.am iota/Makefile.am iota/config.h NEWS"
 
 if [ -z "$files" ]; then
   echo "No files found"

@@ -113,11 +113,15 @@ parse_args(int argc, char **argv)
 
   plogf(INFO "Project name was set to %s", options.name);
 
-  langcmp("c", C) langcmp("cpp", CXX) langcmp("cxx", CXX) langcmp("py", PYTHON)
-      langcmp("python", PYTHON)
-
-          if (!found) plogf(FAIL "Could not find language using DEFAULT");
-  else plogf(INFO "Project language was set to %s", selected);
+  langcmp("c", C);
+  langcmp("cpp", CXX);
+  langcmp("cxx", CXX);
+  langcmp("py", PYTHON);
+  langcmp("python", PYTHON);
+  if (!found)
+    plogf(FAIL "Could not find language using DEFAULT");
+  else
+    plogf(INFO "Project language was set to %s", selected);
   return 0;
 }
 
