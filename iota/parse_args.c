@@ -18,8 +18,8 @@
   }
 
 __options options = {
-    .verbose = 0,
-    .debug = 0,
+    .verbose = 1,
+    .debug = 1,
     .git = 0,
     .l_bsd = 0,
     .l_gpl = 0,
@@ -40,12 +40,29 @@ parse_args(int argc, char **argv)
 {
   int opt, option_index = 0;
   struct option long_options[] = {
-      {"version", no_argument, 0, 1},  {"help", no_argument, 0, 2},
-      {"debug", no_argument, 0, 3},    {"git", no_argument, 0, 4},
-      {"Lbsd", no_argument, 0, 5},     {"Lgpl", no_argument, 0, 6},
-      {"Lmit", no_argument, 0, 7},     {"no-markdown", no_argument, 0, 8},
-      {"no-build", no_argument, 0, 9}, {0, 0, 0, 0}};
+      {"version", no_argument, 0, 1}, {"help", no_argument, 0, 2},
+      {"debug", no_argument, 0, 3},   {"git", no_argument, 0, 4},
+      {"Lbsd", no_argument, 0, 5},    {"Lgpl", no_argument, 0, 6},
+      {"Lmit", no_argument, 0, 7},    {0, 0, 0, 0}};
   opterr = 0;
+
+  // manual parse for '-no-build' and '-no-markdown'
+  for (int i = 1; i < argc; i++)
+  {
+    pdebugf("manual parse", "%d", i);
+    if (argv[i][0] == '-' && strncmp(argv[i], "-no-markdown", 12) == 0)
+    {
+      plogf(OK "Found -no-markdown");
+      options.no_markdown = 1;
+      argv[i] = NULL;
+    }
+    else if (argv[i][0] == '-' && strncmp(argv[i], "-no-build", 9) == 0)
+    {
+      plogf(OK "Found -no-build");
+      options.no_build = 1;
+      argv[i] = NULL;
+    }
+  }
 
   while ((opt = getopt_long(argc, argv, "v", long_options, &option_index)) !=
          -1)
