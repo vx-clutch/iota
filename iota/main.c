@@ -1,9 +1,9 @@
 // Copyright (C) 2025 vx-clutch ( owestness@gmail.com )
 // See end of file for extended copyright information.
 
+#include "common/bootstrap.h"
 #include "parse_args.h"
 #include "syslog/error.h"
-#include "common/bootstrap.h"
 #include <stdlib.h>
 
 int
