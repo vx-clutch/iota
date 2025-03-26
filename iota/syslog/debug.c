@@ -17,8 +17,7 @@
 int
 __pdebugf(int line, const char *file, const char *desc, const char *format, ...)
 {
-  if (!options.debug)
-    return 0;
+  if (!options.debug) return 0;
   va_list args;
   va_start(args, format);
   printf("%s%s%s: %sdebug: %s:%d%s: ", WHITE, PACKAGE_NAME, RESET, WHITE, file,

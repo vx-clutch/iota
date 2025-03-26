@@ -35,8 +35,7 @@ plogf(int status, const char *format, ...)
   va_list args;
   va_start(args, format);
 #ifndef FORCE_VERBOSE
-  if (!options.verbose)
-    return;
+  if (!options.verbose) return;
 #endif
 
   switch (status)
