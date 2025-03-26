@@ -8,7 +8,7 @@ DerivePointerAlignment: false
 PointerAlignment: Right
 ColumnLimit: 80
 SortIncludes: true
-AllowShortIfStatementsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: true
 RemoveBracesLLVM: true
 BraceWrapping:
   AfterControlStatement: false

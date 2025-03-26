@@ -18,8 +18,8 @@
   }
 
 __options options = {
-    .verbose = 1,
-    .debug = 1,
+    .verbose = 0,
+    .debug = 0,
     .git = 0,
     .l_bsd = 0,
     .l_gpl = 0,
