@@ -32,6 +32,13 @@ bootstrap()
     fclose(fp);
     pdebugf("write", "README.md");
   }
+  else if (options.no_markdown)
+  {
+    fp = fopen("README", "w");
+    err = fprintf(fp, "%s", options.name);
+    fclose(fp);
+    pdebugf("write", "README");
+  }
 
   err = mkdir(options.name, 0700);
   pdebugf("write", "source directory");
