@@ -11,7 +11,7 @@ int
 main(int argc, char **argv)
 {
   const char *E_SILENT_ = getenv("NOALPHA");
-  if (strcmp(E_SILENT_, ""))
+  if (E_SILENT_ == NULL)
     pnotef(
         "iota is in its *alpha* stages of development expect missing features "
         "or "
