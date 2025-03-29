@@ -5,13 +5,17 @@
 #include "parse_args.h"
 #include "syslog/error.h"
 #include <stdlib.h>
+#include <string.h>
 
 int
 main(int argc, char **argv)
 {
-  pnotef(
-      "iota is in its *alpha* stages of development expect missing features or "
-      "other errors. Please report any bugs to the developers.");
+  const char *E_SILENT_ = getenv("NOALPHA");
+  if (strcmp(E_SILENT_, ""))
+    pnotef(
+        "iota is in its *alpha* stages of development expect missing features "
+        "or "
+        "other errors. Please report any bugs to the developers.");
   int status = parse_args(argc, argv);
   if (status)
   {
