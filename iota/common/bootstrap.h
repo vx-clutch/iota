@@ -4,7 +4,7 @@
 #ifndef BASE_H
 #define BASE_H
 
-int bootstrap(char *);
+int bootstrap();
 
 #endif
 

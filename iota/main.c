@@ -23,7 +23,7 @@ main(int argc, char **argv)
     return EXIT_FAILURE;
   }
   plogf(OK "parse_args");
-  status = bootstrap(options.name);
+  status = bootstrap();
   if (status)
   {
     plogf(FAIL "b_write");
