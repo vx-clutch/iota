@@ -111,9 +111,14 @@ parse_args(int argc, char **argv)
 
   options.__parsed = 1;
   plogf(INFO "checking positional arguments.");
-  if (optind >= argc)
+  if (!optind + 1)
   {
-    pfatalf("no positional arguments.");
+    pfatalf("no name argument.");
+    return 1;
+  }
+  if (!optind + 2)
+  {
+    pfatalf("no language argument.");
     return 1;
   }
 

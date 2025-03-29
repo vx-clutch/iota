@@ -3,6 +3,7 @@
 
 #include "bootstrap.h"
 #include "../syslog/error.h"
+#include <assert.h>
 #include <stdio.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -12,12 +13,13 @@ struct stat st = {0};
 int
 bootstrap()
 {
+  assert(options.name != NULL);
   FILE *fp;
   int err;
   if (stat(options.name, &st) == -1)
   {
     err = mkdir(options.name, 0700);
-    pdebugf("write", "root directory");
+    pdebugf("write", "project root directory");
   }
   else
     pfatalf("Directory with the name %s already debug", options.name);
