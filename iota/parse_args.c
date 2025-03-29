@@ -156,6 +156,8 @@ print_help(void)
   printf("  --no-build\tDisable build system.\n");
   printf("  --no-markdown\tReplace README.md with a text file version.\n");
   printf("  -v\t\tEnables verbose output.\n");
+  plogf(INFO "Exiting");
+  exit(0);
 }
 
 void
@@ -167,6 +169,8 @@ print_version()
       "software; see the source for copying conditions. There is NO\nwarranty; "
       "not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE\n",
       PACKAGE_VERSION, COPYRIGHT_YEAR, PLATFORM, COPYRIGHT_YEAR);
+  plogf(INFO "Exiting");
+  exit(0);
 }
 
 /* iota is an opinionated init tool.
