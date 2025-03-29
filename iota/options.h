@@ -10,7 +10,7 @@
 typedef enum
 {
   C,
-  CXX,
+  CPP,
   PYTHON,
   DEFAULT,
 } lang_t;
@@ -29,6 +29,16 @@ typedef struct
   char *name;
   lang_t language;
 } __options;
+
+static char *
+tostring(lang_t src)
+{
+  if (src == C) return "C";
+  if (src == CPP) return "CXX";
+  if (src == PYTHON) return "PYTHON";
+  if (src == DEFAULT) return "DEFAULT";
+  return NULL;
+}
 
 extern __options options;
 

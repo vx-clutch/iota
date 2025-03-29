@@ -9,12 +9,11 @@
 #include <stdio.h>
 #include <string.h>
 
-#define langcmp(k, p)                                                          \
-  if (strcmp(lang_arg, k))                                                     \
+#define langcmp(k)                                                             \
+  if (strcmp(tostring(k), lang_arg))                                           \
   {                                                                            \
-    options.language = p;                                                      \
-    found++;                                                                   \
-    selected = k;                                                              \
+    options.language = k;                                                      \
+    goto __found;                                                              \
   }
 
 __options options = {
@@ -108,20 +107,12 @@ parse_args(int argc, char **argv)
       return 1;
     }
   }
-
+  /* Set __parsed to 1 only after all of the arguments have been parsed. This is
+   * used to tell the program that it can safely use the options struct. Also
+   * this is why parse_args must be one of the first function to be called. */
   options.__parsed = 1;
-  plogf(INFO "checking positional arguments.");
-  if (!optind + 1)
-  {
-    pfatalf("no name argument.");
-    return 1;
-  }
-  if (!optind + 2)
-  {
-    pfatalf("no language argument.");
-    return 1;
-  }
 
+  plogf(INFO "checking positional arguments.");
   if (argc - optind < 1)
   {
     pfatalf("not enough arguments");
@@ -130,20 +121,20 @@ parse_args(int argc, char **argv)
 
   options.name = argv[optind++];
   char *lang_arg = argv[optind++];
-  int found;
-  char *selected;
 
   plogf(INFO "Project name was set to %s", options.name);
 
-  langcmp("c", C);
-  langcmp("cpp", CXX);
-  langcmp("cxx", CXX);
-  langcmp("py", PYTHON);
-  langcmp("python", PYTHON);
-  if (!found)
-    plogf(FAIL "Could not find language using DEFAULT");
-  else
-    plogf(INFO "Project language was set to %s", selected);
+  /* This compares the argument at position one to a string and if it is true it
+   * sets options.language to said language */
+  langcmp(CPP);
+  langcmp(C);
+  langcmp(PYTHON);
+  goto __default;
+__found:
+  plogf(OK "Project language was set to %s", tostring(options.language));
+  return 0;
+__default:
+  plogf(INFO "Project language was set to default");
   return 0;
 }
 
