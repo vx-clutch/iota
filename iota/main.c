@@ -15,7 +15,8 @@ main(int argc, char **argv)
     pnotef(
         "iota is in its *alpha* stages of development expect missing features "
         "or "
-        "other errors. Please report any bugs to the developers.");
+        "other errors. Please report any bugs to the developers. Silence this "
+        "warning by setting the variable 'NOALPHA'");
   int status = parse_args(argc, argv);
   if (status)
   {
