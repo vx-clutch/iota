@@ -1,28 +1,14 @@
 // Copyright (C) 2025 vx-clutch ( owestness@gmail.com )
 // See end of file for extended copyright information.
 
-#ifndef TEMPLATE_H
-#define TEMPLATE_H
-
-// clang-format off
-static char *__C_DEFAULT_SORCE_CODE = "#include <stdio.h>
+#ifndef AMINIT_H
+#define AMINIT_H
 
 int
-main(void)
-{
-	printf(\"Hello from Iota!\");
-	return 0;
-}";
-static char *__CC_DEFAULT_SORCE_CODE = "#include <iostream>
+configure();
 
 int
-main(void)
-{
-	std::cout << \"Hello from Iota!\" << std::endl;
-	return 0;
-}";
-static char *__PYTHON_DEFAULT_SORCE_CODE = "print(\"Hello from Iota!\")";
-// clang-format on
+automake();
 
 #endif
 

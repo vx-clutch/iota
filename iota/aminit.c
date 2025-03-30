@@ -1,30 +1,19 @@
 // Copyright (C) 2025 vx-clutch ( owestness@gmail.com )
 // See end of file for extended copyright information.
 
-#ifndef TEMPLATE_H
-#define TEMPLATE_H
-
-// clang-format off
-static char *__C_DEFAULT_SORCE_CODE = "#include <stdio.h>
+#include "aminit.h"
 
 int
-main(void)
+configure()
 {
-	printf(\"Hello from Iota!\");
-	return 0;
-}";
-static char *__CC_DEFAULT_SORCE_CODE = "#include <iostream>
+  return 0;
+}
 
 int
-main(void)
+automake()
 {
-	std::cout << \"Hello from Iota!\" << std::endl;
-	return 0;
-}";
-static char *__PYTHON_DEFAULT_SORCE_CODE = "print(\"Hello from Iota!\")";
-// clang-format on
-
-#endif
+  return 0;
+}
 
 /* iota is an opinionated init tool.
  * Copyright (C) 2025 vx-clutch
@@ -55,4 +44,3 @@ static char *__PYTHON_DEFAULT_SORCE_CODE = "print(\"Hello from Iota!\")";
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-

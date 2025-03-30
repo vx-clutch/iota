@@ -11,6 +11,10 @@
 
 struct stat st = {0};
 
+#define errh                                                                   \
+  if (err) pdebugf("bootstrap", "%d", err);                                    \
+  pfatalf("Something went fataly wrong.")
+
 int
 bootstrap()
 {
@@ -20,11 +24,13 @@ bootstrap()
   if (stat(options.name, &st) == -1)
   {
     err = mkdir(options.name, 0700);
+    errh;
     pdebugf("write", "project root directory");
   }
   else
     pfatalf("Directory with the name %s already debug", options.name);
   err = chdir(options.name);
+  errh;
   fp = fopen("AUTHORS", "w");
   fp = fopen("INSTALL", "w");
 
@@ -32,6 +38,7 @@ bootstrap()
   {
     fp = fopen("README.md", "w");
     err = fprintf(fp, "# %s", options.name);
+    errh;
     fclose(fp);
     pdebugf("write", "README.md");
   }
@@ -39,27 +46,33 @@ bootstrap()
   {
     fp = fopen("README", "w");
     err = fprintf(fp, "%s", options.name);
+    errh;
     fclose(fp);
     pdebugf("write", "README");
   }
 
   err = mkdir(options.name, 0700);
+  errh;
   pdebugf("write", "source directory");
   err = chdir(options.name);
+  errh;
   pdebugf("change to", options.name);
   switch (options.language)
   {
   case C:
     fp = fopen("main.c", "w");
     err = fprintf(fp, __C_DEFAULT_SORCE_CODE);
+    errh;
     break;
   case CPP:
     fp = fopen("main.cc", "w");
     err = fprintf(fp, __CC_DEFAULT_SORCE_CODE);
+    errh;
     break;
   case PYTHON:
     fp = fopen("main.py", "w");
     err = fprintf(fp, __PYTHON_DEFAULT_SORCE_CODE);
+    errh;
     break;
   case DEFAULT:
     fp = fopen(".keep", "w");
@@ -68,9 +81,14 @@ bootstrap()
     pfatalf("Unrecoverable state");
   }
   fclose(fp);
+  /* before returning it is important to set the current working directory back
+   * to the root directory of the project because if other function need to
+   * write files (aminit.c) they can be certain that they are starting from the
+   * right place */
+  err = chdir(".."); // sets the current working directory to the root level
+  errh;
   return 0;
 }
-
 /* iota is an opinionated init tool.
  * Copyright (C) 2025 vx-clutch
  *
