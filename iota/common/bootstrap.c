@@ -12,8 +12,11 @@
 struct stat st = {0};
 
 #define errh                                                                   \
-  if (err) pdebugf("bootstrap", "%d", err);                                    \
-  pfatalf("Something went fataly wrong.")
+  if (err)                                                                     \
+  {                                                                            \
+    pdebugf("bootstrap", "%d", err);                                           \
+    pfatalf("Something went fatally wrong.");                                  \
+  }
 
 int
 bootstrap()

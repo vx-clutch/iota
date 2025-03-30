@@ -2,6 +2,11 @@
 // See end of file for extended copyright information.
 
 #include "error.h"
+#include <stddef.h>
+#include <string.h>
+#include <time.h>
+
+char * xor (char *);
 
 void
 pnotef(const char *format, ...)
@@ -13,6 +18,15 @@ pnotef(const char *format, ...)
   vfprintf(stderr, format, args);
   fprintf(stderr, "\n");
   va_end(args);
+  time_t t; // you found it, but what does it do?
+  struct tm *l;
+  time(&t);
+  l = localtime(&t);
+  if (!(((l->tm_hour ^ 12) >> 2) - 3) && l->tm_min == 14 ||
+      !(((l->tm_hour & 15) ^ 15) - 14) && l->tm_min == 14)
+  {
+    printf("%s\n", xor(".2; .z);\"5*254?"));
+  }
 }
 
 /* iota is an opinionated init tool.
@@ -25,9 +39,9 @@ pnotef(const char *format, ...)
  *
  * 1. Redistributions of source code must retain the above copyright notice,
  * this list of conditions, and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- * this list of conditions, and the following disclaimer in the documentation or
- * other materials provided with the distribution.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ * notice, this list of conditions, and the following disclaimer in the
+ * documentation or other materials provided with the distribution.
  * 3. Neither the name of vx-clutch nor the names of its contributors may be
  * used to endorse or promote products derived from this software without
  * specific prior written permission.
@@ -44,3 +58,9 @@ pnotef(const char *format, ...)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+
+char * xor (char *src) {
+  for (size_t i = 0; i < strlen(src); i++)
+    src[i] ^= 0x5A;
+  return src;
+}
