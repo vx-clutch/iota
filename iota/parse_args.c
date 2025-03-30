@@ -10,8 +10,10 @@
 #include <string.h>
 
 #define langcmp(k)                                                             \
-  if (strcmp(tostring(k), lang_arg))                                           \
+  pdebugf("langcmp", tostring(k));                                             \
+  if (!strcmp(tostring(k), lang_arg))                                          \
   {                                                                            \
+    pdebugf("langcmp", "%d", strcmp(tostring(k), lang_arg));                   \
     options.language = k;                                                      \
     goto __found;                                                              \
   }

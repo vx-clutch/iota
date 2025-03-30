@@ -3,6 +3,7 @@
 
 #include "bootstrap.h"
 #include "../syslog/error.h"
+#include "templates.h"
 #include <assert.h>
 #include <stdio.h>
 #include <sys/stat.h>
@@ -44,6 +45,29 @@ bootstrap()
 
   err = mkdir(options.name, 0700);
   pdebugf("write", "source directory");
+  err = chdir(options.name);
+  pdebugf("change to", options.name);
+  switch (options.language)
+  {
+  case C:
+    fp = fopen("main.c", "w");
+    err = fprintf(fp, __C_DEFAULT_SORCE_CODE);
+    break;
+  case CPP:
+    fp = fopen("main.cc", "w");
+    err = fprintf(fp, __CC_DEFAULT_SORCE_CODE);
+    break;
+  case PYTHON:
+    fp = fopen("main.py", "w");
+    err = fprintf(fp, __PYTHON_DEFAULT_SORCE_CODE);
+    break;
+  case DEFAULT:
+    fp = fopen(".keep", "w");
+    break;
+  default:
+    pfatalf("Unrecoverable state");
+  }
+  fclose(fp);
   return 0;
 }
 
