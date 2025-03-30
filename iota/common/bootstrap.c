@@ -15,7 +15,7 @@ struct stat st = {0};
   if (err)                                                                     \
   {                                                                            \
     pdebugf("bootstrap", "%d", err);                                           \
-    pfatalf("Something went fatally wrong.");                                  \
+    pfatalf("something went fatally wrong.");                                  \
   }
 
 int
@@ -31,7 +31,7 @@ bootstrap()
     pdebugf("write", "project root directory");
   }
   else
-    pfatalf("Directory with the name %s already debug", options.name);
+    pfatalf("directory with the name %s already debug.", options.name);
   err = chdir(options.name);
   errh;
   fp = fopen("AUTHORS", "w");
