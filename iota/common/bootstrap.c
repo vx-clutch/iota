@@ -63,15 +63,15 @@ bootstrap()
   {
   case C:
     fp = fopen("main.c", "w");
-    err = fprintf(fp, __C_DEFAULT_SORCE_CODE);
+    err = fprintf(fp, "%s", __C_DEFAULT_SORCE_CODE);
     errh("fprinf") break;
   case CPP:
     fp = fopen("main.cc", "w");
-    err = fprintf(fp, __CC_DEFAULT_SORCE_CODE);
+    err = fprintf(fp, "%s", __CC_DEFAULT_SORCE_CODE);
     errh("fprinf") break;
   case PYTHON:
     fp = fopen("main.py", "w");
-    err = fprintf(fp, __PYTHON_DEFAULT_SORCE_CODE);
+    err = fprintf(fp, "%s", __PYTHON_DEFAULT_SORCE_CODE);
     errh("fprintf") break;
   case DEFAULT:
     fp = fopen(".keep", "w");
