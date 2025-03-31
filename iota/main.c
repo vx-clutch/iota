@@ -4,6 +4,7 @@
 #include "common/bootstrap.h"
 #include "parse_args.h"
 #include "syslog/error.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -15,21 +16,22 @@ main(int argc, char **argv)
     pnotef(
         "iota is in its *alpha* stages of development expect missing features "
         "or other errors. Please report any bugs to the developers. You can "
-        "silence this message by setting the envirement variable 'NOALPHA'");
+        "silence this message by setting the envirement variable 'NOALPHA'.");
   int status = parse_args(argc, argv);
   if (status)
   {
-    plogf(FAIL "parse_args");
+    plogf(FAIL "parse_args.");
     return EXIT_FAILURE;
   }
-  plogf(OK "parse_args");
+  plogf(OK "parse_args.");
   status = bootstrap();
   if (status)
   {
-    plogf(FAIL "b_write");
+    plogf(FAIL "bootstrap.");
     return EXIT_FAILURE;
   }
-  plogf(OK "b_write");
+  plogf(OK "bootstrap.");
+  printf("completed.\n");
   return EXIT_SUCCESS;
 }
 

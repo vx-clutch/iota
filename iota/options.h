@@ -30,6 +30,9 @@ typedef struct
   lang_t language;
 } __options;
 
+#define _SIZE__ABSOLUTE_PATH 1024
+char absolute_path[_SIZE__ABSOLUTE_PATH];
+
 static char *
 tostring(lang_t src)
 {
@@ -41,6 +44,7 @@ tostring(lang_t src)
 }
 
 extern __options options;
+extern char absolute_path[];
 
 #endif
 

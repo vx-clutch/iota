@@ -10,6 +10,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 #define langcmp(k)                                                             \
   pdebugf("langcmp", tostring(k));                                             \
@@ -52,8 +53,7 @@ parse_args(int argc, char **argv)
   // manual parse for '-no-build' and '-no-markdown'
   for (int i = 1; i < argc; i++)
   {
-    pdebugf("manual parse", "%d", i);
-    if (argv[i][0] == '-' && strncmp(argv[i], "-no-markdown", 12) == 0)
+    if (argv[i][0] == '-' && strcmp(argv[i], "-no-markdown") == 0)
     {
       plogf(OK "Found -no-markdown");
       options.no_markdown = 1;
@@ -70,7 +70,8 @@ parse_args(int argc, char **argv)
   while ((opt = getopt_long(argc, argv, "v", long_options, &option_index)) !=
          -1)
   {
-    plogf(INFO "opt: '%s'", argv[optind - 1]);
+    /* This log only gets run after -v has been parsed. */
+    plogf(INFO "opt: '%s'.", argv[optind - 1]);
     switch (opt)
     {
     case 'v':
@@ -104,10 +105,10 @@ parse_args(int argc, char **argv)
       options.no_build = 1;
       break;
     case '?':
-      plogf(FAIL "unrecognized command-line argument '%s'", argv[optind]);
+      perrorf("unrecognized command-line argument '%s'.", argv[optind]);
       return 1;
     default:
-      plogf(FAIL "unrecognized command-line argument '%s'", argv[optind]);
+      perrorf("unrecognized command-line argument '%s'.", argv[optind]);
       return 1;
     }
   }
@@ -119,7 +120,7 @@ parse_args(int argc, char **argv)
   plogf(INFO "checking positional arguments.");
   if (argc - optind < 1)
   {
-    pfatalf("not enough arguments");
+    pfatalf("not enough arguments.");
     return 1;
   }
 
@@ -128,7 +129,8 @@ parse_args(int argc, char **argv)
     options.name[i] = tolower((unsigned char)options.name[i]);
   char *lang_arg = argv[optind++];
 
-  plogf(INFO "Project name was set to %s", options.name);
+  plogf(INFO "Project name was set to %s.", options.name);
+  getcwd(absolute_path, _SIZE__ABSOLUTE_PATH);
 
   /* This compares the argument at position one to a string and if it is true it
    * sets options.language to said language */
@@ -137,10 +139,10 @@ parse_args(int argc, char **argv)
   langcmp(PYTHON);
   goto __default;
 __found:
-  plogf(OK "Project language was set to %s", tostring(options.language));
+  plogf(OK "Project language was set to %s.", tostring(options.language));
   return 0;
 __default:
-  plogf(INFO "Project language was set to default");
+  plogf(INFO "Project language was set to default.");
   return 0;
 }
 

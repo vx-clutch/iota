@@ -19,7 +19,7 @@ pfatalf(const char *format, ...)
   fprintf(stderr, "%s%s%s: %sfatal error%s: ", WHITE, PACKAGE_NAME, RESET, RED,
           RESET);
   vfprintf(stderr, format, args);
-  fprintf(stderr, "\ngeneration terminated.\n");
+  fprintf(stderr, "\n");
   va_end(args);
   exit(EXIT_FAILURE);
 }

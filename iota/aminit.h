@@ -8,7 +8,10 @@ int
 configure();
 
 int
-automake();
+makefile();
+
+int
+init();
 
 #endif
 

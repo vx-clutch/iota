@@ -6,12 +6,21 @@
 int
 configure()
 {
+  /* creates the configure.ac */
   return 0;
 }
 
 int
-automake()
+makefile()
 {
+  /* make the Makefile.am and ${SRC_DIR}/Makefile.am */
+  return 0;
+}
+
+int
+init()
+{
+  /* run the autotools commands */
   return 0;
 }
 

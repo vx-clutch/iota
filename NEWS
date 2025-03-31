@@ -2,3 +2,5 @@ To-do for 1.0
   - More general ways to select language; PYTHON -> py, C -> c, etc.
   - Polish
   - Test and fix all errors.
+  - Fix -no-markdown & -no-build
+  - Implement build systems

@@ -6,6 +6,7 @@
 #include "templates.h"
 #include <assert.h>
 #include <stdio.h>
+#include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
 
@@ -15,7 +16,8 @@ struct stat st = {0};
   if (err)                                                                     \
   {                                                                            \
     if (err)                                                                   \
-      plogf(FAIL "bootstrap:%s:%d: error value %d", fn, __LINE__, err);        \
+      plogf(FAIL "bootstrap:%s:%d: error value %s", fn, __LINE__,              \
+            strerror(err));                                                    \
     else                                                                       \
       plogf(OK "bootstrap:%d: %d", __LINE__, err);                             \
     pfatalf("something went fatally wrong during the bootstrap process.");     \
@@ -30,12 +32,14 @@ bootstrap()
   if (stat(options.name, &st) == -1)
   {
     err = mkdir(options.name, 0700);
-    errh("mkdir") pdebugf("write", "project root directory");
+    errh("mkdir");
+    pdebugf("write", "project root directory");
   }
   else
     pfatalf("directory with the name %s already exists.", options.name);
   err = chdir(options.name);
-  errh("chdir") fp = fopen("AUTHORS", "w");
+  errh("chdir");
+  fp = fopen("AUTHORS", "w");
   fp = fopen("INSTALL", "w");
 
   if (!options.no_markdown)
@@ -43,7 +47,8 @@ bootstrap()
     fp = fopen("README.md", "w");
     if (!fp) pfatalf("Failed to open README.md for writing");
     err = fprintf(fp, "# %s", options.name);
-    errh("fprinf") fclose(fp);
+    // errh("fprinf");
+    fclose(fp);
     pdebugf("write", "README.md");
   }
   else if (options.no_markdown)
@@ -51,33 +56,44 @@ bootstrap()
     fp = fopen("README", "w");
     if (!fp) pfatalf("Failed to open README for writing");
     err = fprintf(fp, "%s", options.name);
-    errh("fprintf") fclose(fp);
+    errh("fprintf");
+    fclose(fp);
     pdebugf("write", "README");
   }
 
   err = mkdir(options.name, 0700);
-  errh("mkdir") pdebugf("write", "source directory");
+  errh("mkdir");
+  pdebugf("write", "source directory");
   err = chdir(options.name);
-  errh("chdir") pdebugf("change to", options.name);
+  errh("chdir");
+  pdebugf("change to", options.name);
   switch (options.language)
   {
   case C:
     fp = fopen("main.c", "w");
     err = fprintf(fp, "%s", __C_DEFAULT_SORCE_CODE);
-    errh("fprinf") break;
+    pdebugf("write", "C source code");
+    // errh("fprinf");
+    break;
   case CPP:
     fp = fopen("main.cc", "w");
     err = fprintf(fp, "%s", __CC_DEFAULT_SORCE_CODE);
-    errh("fprinf") break;
+    pdebugf("write", "CPP source code");
+    // errh("fprinf");
+    break;
   case PYTHON:
     fp = fopen("main.py", "w");
     err = fprintf(fp, "%s", __PYTHON_DEFAULT_SORCE_CODE);
-    errh("fprintf") break;
+    pdebugf("write", "PYTHON source code");
+    // errh("fprintf");
+    break;
   case DEFAULT:
     fp = fopen(".keep", "w");
+    pdebugf("write", "DEFAULT source code");
     break;
   default:
-    pfatalf("Unrecoverable state");
+    pfatalf(
+        "Unrecoverable state while trying to create main source code file.");
   }
   fclose(fp);
   /* before returning it is important to set the current working directory back
