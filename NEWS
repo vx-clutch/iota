@@ -1,7 +1,4 @@
-Feature List:
-  High:
-    DEFAULT case completed.
-    Error handling.
-    General testing.
-  Medium:
-  Low:
+To-do for 1.0
+  - More general ways to select language; PYTHON -> py, C -> c, etc.
+  - Polish
+  - Test and fix all errors.
