@@ -67,34 +67,9 @@ bootstrap()
   err = chdir(options.name);
   errh("chdir");
   pdebugf("change to", options.name);
-  switch (options.language)
-  {
-  case C:
-    fp = fopen("main.c", "w");
-    err = fprintf(fp, "%s", __C_DEFAULT_SORCE_CODE);
-    pdebugf("write", "C source code");
-    // errh("fprinf");
-    break;
-  case CPP:
-    fp = fopen("main.cc", "w");
-    err = fprintf(fp, "%s", __CC_DEFAULT_SORCE_CODE);
-    pdebugf("write", "CPP source code");
-    // errh("fprinf");
-    break;
-  case PYTHON:
-    fp = fopen("main.py", "w");
-    err = fprintf(fp, "%s", __PYTHON_DEFAULT_SORCE_CODE);
-    pdebugf("write", "PYTHON source code");
-    // errh("fprintf");
-    break;
-  case DEFAULT:
-    fp = fopen(".keep", "w");
-    pdebugf("write", "DEFAULT source code");
-    break;
-  default:
-    pfatalf(
-        "Unrecoverable state while trying to create main source code file.");
-  }
+  fp = fopen(strcat("main.", tostring(options.language)), "w");
+  err = fprintf(fp, "%s", __SOURCE[options.language]);
+  pdebugf("write", "C source code");
   fclose(fp);
   /* before returning it is important to set the current working directory back
    * to the root directory of the project because if other function need to

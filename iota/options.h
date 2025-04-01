@@ -9,10 +9,10 @@
 
 typedef enum
 {
-  C,
-  CPP,
-  PYTHON,
-  DEFAULT,
+  DEFAULT, // 0
+  C,       // 1
+  CPP,     // 2
+  PYTHON,  // 3
 } lang_t;
 
 typedef struct
@@ -30,8 +30,8 @@ typedef struct
   lang_t language;
 } __options;
 
-#define _SIZE__ABSOLUTE_PATH 1024
-char absolute_path[_SIZE__ABSOLUTE_PATH];
+/*#define _SIZE__ABSOLUTE_PATH 1024*/
+/*char absolute_path[_SIZE__ABSOLUTE_PATH];*/
 
 static char *
 tostring(lang_t src)

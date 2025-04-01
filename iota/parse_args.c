@@ -129,8 +129,8 @@ parse_args(int argc, char **argv)
     options.name[i] = tolower((unsigned char)options.name[i]);
   char *lang_arg = argv[optind++];
 
-  plogf(INFO "Project name was set to %s.", options.name);
-  getcwd(absolute_path, _SIZE__ABSOLUTE_PATH);
+  /*plogf(INFO "Project name was set to %s.", options.name);*/
+  /*getcwd(absolute_path, _SIZE__ABSOLUTE_PATH);*/
 
   /* This compares the argument at position one to a string and if it is true it
    * sets options.language to said language */
