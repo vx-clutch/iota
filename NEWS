@@ -4,3 +4,4 @@ To-do for 1.0
   - Test and fix all errors.
   - Fix -no-markdown & -no-build
   - Implement build systems
+  - Change the source cdoe strings to arrry that can be indexed with lang_t enum
