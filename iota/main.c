@@ -14,7 +14,7 @@ main(int argc, char **argv)
   const char *E_SILENT_ = getenv("NOALPHA");
   if (E_SILENT_ == NULL)
     pnotef(
-        "iota is in its *alpha* stages of development expect missing features "
+        "iota is in its *beta* stages of development expect missing features "
         "or other errors. Please report any bugs to the developers. You can "
         "silence this message by setting the envirement variable 'NOALPHA'.");
   int status = parse_args(argc, argv);
