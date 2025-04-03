@@ -2,15 +2,19 @@
 // See end of file for extended copyright information.
 
 #include "aminit.h"
+#include <stdio.h>
 
 int
 configure()
 {
+  FIlE *fp;
+  fp = fopen("configure.ac", "w"); // while at the root level of the project
+  fprintf(fp, "AC_INIT([%s], [1.0], [example@gmail.com])\nAM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])\n\nAC_PROG_CC\nAC_CONFIG_HEADERS([%s/config.h])\nAC_CONFIG_FILES([\n\tMakefile\n\t%s/Makefile\n])\nAC_OUTPUT"); // if git is installed get email from that
   /* creates the configure.ac */
 
   /*
     AC_INIT([options.name], [1.0], [example@gmail.com])
-    AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])\
+    AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
   
     AC_PROG_CC
     AC_CONFIG_HEADERS([options.name/config.h])
