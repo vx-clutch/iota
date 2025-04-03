@@ -28,6 +28,11 @@ int
 makefile()
 {
   /* make the Makefile.am and ${SRC_DIR}/Makefile.am */
+
+  /*
+    
+  */
+  
   return 0;
 }
 
@@ -35,6 +40,10 @@ int
 init()
 {
   /* run the autotools commands */
+
+  // autoreconf -i && ./configure
+  // these need to be status checks
+  
   return 0;
 }
 
