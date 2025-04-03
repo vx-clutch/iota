@@ -7,6 +7,20 @@ int
 configure()
 {
   /* creates the configure.ac */
+
+  /*
+    AC_INIT([options.name], [1.0], [example@gmail.com])
+    AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])\
+  
+    AC_PROG_CC
+    AC_CONFIG_HEADERS([options.name/config.h])
+    AC_CONFIG_FILES([
+      Makefile
+      options.name/Makefile
+    ])
+    AC_OUTPUT
+  */
+  
   return 0;
 }
 
