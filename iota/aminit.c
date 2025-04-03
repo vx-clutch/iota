@@ -29,8 +29,13 @@ makefile()
 {
   /* make the Makefile.am and ${SRC_DIR}/Makefile.am */
 
-  /*
-    
+  /*sub-dir
+    bin_PROGRAMS = options.name
+    options.name_SOURCES = main.c
+  */
+  /*root (dist_doc extention will change with flags)
+    SUBDIRS = iota/
+    dist_doc_DATA = README.md
   */
   
   return 0;
