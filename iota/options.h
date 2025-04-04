@@ -30,14 +30,14 @@ typedef struct
   lang_t language;
 } __options;
 
-/*#define _SIZE__ABSOLUTE_PATH 1024*/
-/*char absolute_path[_SIZE__ABSOLUTE_PATH];*/
+#define _SIZE__ABSOLUTE_PATH 1024
+static char absolute_path[_SIZE__ABSOLUTE_PATH];
 
 static char *
 tostring(lang_t src)
 {
   if (src == C) return "C";
-  if (src == CPP) return "CXX";
+  if (src == CPP) return "CPP";
   if (src == PYTHON) return "PYTHON";
   if (src == DEFAULT) return "DEFAULT";
   return NULL;

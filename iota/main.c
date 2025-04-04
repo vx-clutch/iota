@@ -17,6 +17,7 @@ main(int argc, char **argv)
         "iota is in its *beta* stages of development expect missing features "
         "or other errors. Please report any bugs to the developers. You can "
         "silence this message by setting the envirement variable 'NOALPHA'.");
+  pnotef(_GIT_EMAIL);
   int status = parse_args(argc, argv);
   if (status)
   {

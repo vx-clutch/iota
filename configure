@@ -2875,6 +2875,11 @@ platform="$(uname -o) $(uname -r)"
 printf "%s\n" "#define PLATFORM \"$platform\"" >>confdefs.h
 
 
+_GIT_EMAIL=" -z \"\$(git config user.email)\"  && git config user.email \"example\@example.com\""
+
+printf "%s\n" "#define _GIT_EMAIL \"$_GIT_EMAIL\"" >>confdefs.h
+
+
 
 
 

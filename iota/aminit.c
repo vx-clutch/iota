@@ -2,19 +2,24 @@
 // See end of file for extended copyright information.
 
 #include "aminit.h"
+#include "options.h"
 #include <stdio.h>
+
+#ifndef _GIT_EMAIL
+#define _GIT_EMAIL "example@gmail.com"
+#endif
 
 int
 configure()
 {
-  FIlE *fp;
+  FILE *fp;
   fp = fopen("configure.ac", "w"); // while at the root level of the project
   fprintf(fp,
-          "AC_INIT([%s], [1.0], [example@gmail.com])\nAM_INIT_AUTOMAKE([-Wall "
+          "AC_INIT([%s], [1.0], [%s])\nAM_INIT_AUTOMAKE([-Wall "
           "-Werror foreign "
           "subdir-objects])\n\nAC_PROG_CC\nAC_CONFIG_HEADERS([%s/"
           "config.h])\nAC_CONFIG_FILES([\n\tMakefile\n\t%s/"
-          "Makefile\n])\nAC_OUTPUT"); // if git is installed get email from that
+          "Makefile\n])\nAC_OUTPUT", options.name, _GIT_EMAIL, options.name, options.name); // if git is installed get email from that
   /* creates the configure.ac */
 
   /*

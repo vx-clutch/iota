@@ -67,7 +67,7 @@ bootstrap()
   err = chdir(options.name);
   errh("chdir");
   pdebugf("change to", options.name);
-  fp = fopen(strcat("main.", tostring(options.language)), "w");
+  fp = fopen("main.c", "w");
   err = fprintf(fp, "%s", __SOURCE[options.language]);
   pdebugf("write", "C source code");
   fclose(fp);

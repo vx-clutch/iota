@@ -29,3 +29,6 @@
 
 /* Version number of package */
 #undef VERSION
+
+/* Sets the email for the user */
+#undef _GIT_EMAIL
