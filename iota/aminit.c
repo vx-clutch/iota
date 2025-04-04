@@ -4,6 +4,7 @@
 #include "aminit.h"
 #include "options.h"
 #include <stdio.h>
+#include <string.h>
 
 #ifndef _GIT_EMAIL
 #define _GIT_EMAIL "example@gmail.com"
@@ -19,49 +20,37 @@ configure()
           "-Werror foreign "
           "subdir-objects])\n\nAC_PROG_CC\nAC_CONFIG_HEADERS([%s/"
           "config.h])\nAC_CONFIG_FILES([\n\tMakefile\n\t%s/"
-          "Makefile\n])\nAC_OUTPUT", options.name, _GIT_EMAIL, options.name, options.name); // if git is installed get email from that
-  /* creates the configure.ac */
-
-  /*
-    AC_INIT([options.name], [1.0], [example@gmail.com])
-    AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
-
-    AC_PROG_CC
-    AC_CONFIG_HEADERS([options.name/config.h])
-    AC_CONFIG_FILES([
-      Makefile
-      options.name/Makefile
-    ])
-    AC_OUTPUT
-  */
-
+          "Makefile\n])\nAC_OUTPUT", options.name, _GIT_EMAIL, options.name, options.name);
+  fclose(fp);
   return 0;
 }
 
 int
 makefile()
 {
-  /* make the Makefile.am and ${SRC_DIR}/Makefile.am */
-
-  /*sub-dir
-    bin_PROGRAMS = options.name
-    options.name_SOURCES = main.c
-  */
-  /*root (dist_doc extention will change with flags)
-    SUBDIRS = iota/
-    dist_doc_DATA = README.md
-  */
-
+  FILE *fp;
+  fp = fopen("Makefile.am", "w"); // while at the root level of the project
+  if (options.no_markdown)
+    fprintf(fp, "SUBDIRS = %s/\ndist_doc_DATA = README");
+  else
+    fprintf(fp, "SUBDIRS = %s/\ndist_doc_DATA = README.md");
+  fp = fopen(strcat(options.name, "/Makefile.am"), "w");
+  fprintf(fp, "bin_PROGRAMS = %s\n%s_SOURCES = main.c", options.name, options.name);
+  fclose(fp);
   return 0;
 }
 
 int
-init()
+aminit()
 {
   /* run the autotools commands */
 
   // autoreconf -i && ./configure
   // these need to be status checks
+  configure();
+  makefile();
+  int status = system("autoreconf -i && ./configure");
+  if (status == -1) return -1;
 
   return 0;
 }

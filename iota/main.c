@@ -3,10 +3,13 @@
 
 #include "common/bootstrap.h"
 #include "parse_args.h"
+#include "aminit.h"
 #include "syslog/error.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+int cleanup();
 
 int
 main(int argc, char **argv)
@@ -17,7 +20,6 @@ main(int argc, char **argv)
         "iota is in its *beta* stages of development expect missing features "
         "or other errors. Please report any bugs to the developers. You can "
         "silence this message by setting the envirement variable 'NOALPHA'.");
-  pnotef(_GIT_EMAIL);
   int status = parse_args(argc, argv);
   if (status)
   {
@@ -30,10 +32,19 @@ main(int argc, char **argv)
   {
     plogf(FAIL "bootstrap.");
     return EXIT_FAILURE;
-  }
-  plogf(OK "bootstrap.");
+  } else plogf(OK "bootstrap.");
+  status = aminit();
+  if (status)
+  {
+    plogf(FAIL "aminit.");
+    return EXIT_FAILURE;
+  } else plogf(OK "aminit.");
   printf("completed.\n");
   return EXIT_SUCCESS;
+}
+
+int cleanup() {
+  return 0;
 }
 
 /* iota is an opinionated init tool.

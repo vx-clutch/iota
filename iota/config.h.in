@@ -3,6 +3,9 @@
 /* Current copyright year */
 #undef COPYRIGHT_YEAR
 
+/* Sets the email of the user who compiled this */
+#undef EMAIL
+
 /* Name of package */
 #undef PACKAGE
 
@@ -29,6 +32,3 @@
 
 /* Version number of package */
 #undef VERSION
-
-/* Sets the email for the user */
-#undef _GIT_EMAIL

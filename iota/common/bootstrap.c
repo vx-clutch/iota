@@ -12,17 +12,6 @@
 
 struct stat st = {0};
 
-#define errh(fn)                                                               \
-  if (err)                                                                     \
-  {                                                                            \
-    \ 
-      plogf(FAIL "bootstrap:%s:%d: error value %s", fn, __LINE__,              \
-            strerror(err));                                                    \
-    pfatalf("something went fatally wrong during the bootstrap process.");     \
-  }                                                                            \
-  else                                                                         \
-    plogf(OK "bootstrap:%d: %d", __LINE__, err);
-
 int
 bootstrap()
 {
@@ -31,14 +20,12 @@ bootstrap()
   int err;
   if (stat(options.name, &st) == -1)
   {
-    err = mkdir(options.name, 0700);
-    errh("mkdir");
+    mkdir(options.name, 0700);
     pdebugf("write", "project root directory");
   }
   else
     pfatalf("directory with the name %s already exists.", options.name);
-  err = chdir(options.name);
-  errh("chdir");
+  chdir(options.name);
   fp = fopen("AUTHORS", "w");
   fp = fopen("INSTALL", "w");
 
@@ -46,8 +33,7 @@ bootstrap()
   {
     fp = fopen("README.md", "w");
     if (!fp) pfatalf("Failed to open README.md for writing");
-    err = fprintf(fp, "# %s", options.name);
-    // errh("fprinf");
+    fprintf(fp, "# %s", options.name);
     fclose(fp);
     pdebugf("write", "README.md");
   }
@@ -55,28 +41,26 @@ bootstrap()
   {
     fp = fopen("README", "w");
     if (!fp) pfatalf("Failed to open README for writing");
-    err = fprintf(fp, "%s", options.name);
-    errh("fprintf");
+    fprintf(fp, "%s", options.name);
     fclose(fp);
     pdebugf("write", "README");
   }
 
-  err = mkdir(options.name, 0700);
-  errh("mkdir");
+  mkdir(options.name, 0700);
   pdebugf("write", "source directory");
-  err = chdir(options.name);
-  errh("chdir");
+  chdir(options.name);
+  
   pdebugf("change to", options.name);
   fp = fopen("main.c", "w");
-  err = fprintf(fp, "%s", __SOURCE[options.language]);
+  fprintf(fp, "%s", __SOURCE[(int)options.language]);
   pdebugf("write", "C source code");
   fclose(fp);
   /* before returning it is important to set the current working directory back
    * to the root directory of the project because if other function need to
    * write files (aminit.c) they can be certain that they are starting from the
    * right place */
-  err = chdir(".."); // sets the current working directory to the root level
-  errh("") return 0;
+  chdir(".."); // sets the current working directory to the root level
+  return 0;
 }
 /* iota is an opinionated init tool.
  * Copyright (C) 2025 vx-clutch

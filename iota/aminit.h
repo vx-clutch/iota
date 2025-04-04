@@ -5,13 +5,7 @@
 #define AMINIT_H
 
 int
-configure();
-
-int
-makefile();
-
-int
-init();
+aminit();
 
 #endif
 
