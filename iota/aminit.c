@@ -9,13 +9,18 @@ configure()
 {
   FIlE *fp;
   fp = fopen("configure.ac", "w"); // while at the root level of the project
-  fprintf(fp, "AC_INIT([%s], [1.0], [example@gmail.com])\nAM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])\n\nAC_PROG_CC\nAC_CONFIG_HEADERS([%s/config.h])\nAC_CONFIG_FILES([\n\tMakefile\n\t%s/Makefile\n])\nAC_OUTPUT"); // if git is installed get email from that
+  fprintf(fp,
+          "AC_INIT([%s], [1.0], [example@gmail.com])\nAM_INIT_AUTOMAKE([-Wall "
+          "-Werror foreign "
+          "subdir-objects])\n\nAC_PROG_CC\nAC_CONFIG_HEADERS([%s/"
+          "config.h])\nAC_CONFIG_FILES([\n\tMakefile\n\t%s/"
+          "Makefile\n])\nAC_OUTPUT"); // if git is installed get email from that
   /* creates the configure.ac */
 
   /*
     AC_INIT([options.name], [1.0], [example@gmail.com])
     AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
-  
+
     AC_PROG_CC
     AC_CONFIG_HEADERS([options.name/config.h])
     AC_CONFIG_FILES([
@@ -24,7 +29,7 @@ configure()
     ])
     AC_OUTPUT
   */
-  
+
   return 0;
 }
 
@@ -41,7 +46,7 @@ makefile()
     SUBDIRS = iota/
     dist_doc_DATA = README.md
   */
-  
+
   return 0;
 }
 
@@ -52,7 +57,7 @@ init()
 
   // autoreconf -i && ./configure
   // these need to be status checks
-  
+
   return 0;
 }
 

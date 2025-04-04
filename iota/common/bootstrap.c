@@ -12,14 +12,16 @@
 
 struct stat st = {0};
 
-#define errh(fn)                                                                   \
-    if (err) {                                                                     \ 
-      plogf(FAIL "bootstrap:%s:%d: error value %s", fn, __LINE__,                  \
-            strerror(err));                                                        \
-            pfatalf("something went fatally wrong during the bootstrap process."); \
-      }                                                                            \
-    else                                                                           \
-      plogf(OK "bootstrap:%d: %d", __LINE__, err);                                 \
+#define errh(fn)                                                               \
+  if (err)                                                                     \
+  {                                                                            \
+    \ 
+      plogf(FAIL "bootstrap:%s:%d: error value %s", fn, __LINE__,              \
+            strerror(err));                                                    \
+    pfatalf("something went fatally wrong during the bootstrap process.");     \
+  }                                                                            \
+  else                                                                         \
+    plogf(OK "bootstrap:%d: %d", __LINE__, err);
 
 int
 bootstrap()
