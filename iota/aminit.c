@@ -17,8 +17,10 @@ configure()
 {
   FILE *fp;
   fp = fopen("configure.ac", "w"); // while at the root level of the project
-  if (!fp)
+  if (!fp) {
+    pdebugf("fatal", "exiting.");
     pfatalf("could not read file.");
+  }
   fprintf(fp,
           "AC_INIT([%s], [1.0], [%s])\nAM_INIT_AUTOMAKE([-Wall "
           "-Werror foreign "
@@ -35,8 +37,10 @@ makefile()
 {
   FILE *fp;
   fp = fopen("Makefile.am", "w"); // while at the root level of the project
-  if (!fp)
+  if (!fp) {
+    pdebugf("fatal", "exiting.");
     pfatalf("could not read file.");
+  }
   if (options.no_markdown)
     fprintf(fp, "SUBDIRS = %s/\ndist_doc_DATA = README", options.name);
   else
@@ -50,9 +54,11 @@ makefile()
   strcat(path, suffix);
 
   fp = fopen(path, "w");
+  if (!fp) {
+    pdebugf("fatal", "exiting.");
+    pfatalf("could not read file.");
+  }
   pdebugf("fp", path);
-  if (!fp)
-    pfatalf("could not open file.");
   printf("bin_PROGRAMS = %s\n%s_SOURCES = main.c", options.name,
           options.name);
   free(path);
