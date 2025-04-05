@@ -13,12 +13,12 @@
 #include <string.h>
 #include <unistd.h>
 
-#define langcmp(k)                                                             \
-  pdebugf("langcmp", tostring(k));                                             \
-  if (!strcmp(tostring(k), lang_arg))                                          \
+#define langcmp(src)                                                           \
+  pdebugf("langcmp", tostring(src));                                           \
+  if (!strcmp(tostring(src), lang_arg))                                        \
   {                                                                            \
-    pdebugf("langcmp", "%d", strcmp(tostring(k), lang_arg));                   \
-    options.language = k;                                                      \
+    pdebugf("langcmp", "%d", strcmp(tostring(src), lang_arg));                 \
+    options.language = src;                                                    \
     goto __found;                                                              \
   }
 
@@ -140,6 +140,13 @@ parse_args(int argc, char **argv)
   langcmp(CPP);
   langcmp(C);
   langcmp(PYTHON);
+  pdebugf("langcmp", "py"); // manual check for 'py'
+  if (!strcmp("py", lang_arg))
+  {
+    pdebugf("langcmp", "%d", strcmp("py", lang_arg));
+    options.language = PYTHON;
+    goto __found;
+  }
   goto __default;
 __found:
   plogf(OK "Project language was set to %s.", tostring(options.language));

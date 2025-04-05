@@ -1,8 +1,5 @@
 /* iota/config.h.in.  Generated from configure.ac by autoheader.  */
 
-/* Current copyright year */
-#undef COPYRIGHT_YEAR
-
 /* Name of package */
 #undef PACKAGE
 
@@ -23,9 +20,6 @@
 
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
-
-/* Sets the platform that this is being compiled on */
-#undef PLATFORM
 
 /* Version number of package */
 #undef VERSION

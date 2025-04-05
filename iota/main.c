@@ -1,16 +1,17 @@
 // Copyright (C) 2025 vx-clutch ( owestness@gmail.com )
 // See end of file for extended copyright information.
 
+#include "aminit.h"
 #include "common/bootstrap.h"
 #include "options.h"
 #include "parse_args.h"
-#include "aminit.h"
 #include "syslog/error.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-int cleanup();
+int
+cleanup();
 
 int
 main(int argc, char **argv)
@@ -21,31 +22,38 @@ main(int argc, char **argv)
         "iota is in its *beta* stages of development expect missing features "
         "or other errors. Please report any bugs to the developers. You can "
         "silence this message by setting the envirement variable 'NOALPHA'.");
-  int status = parse_args(argc, argv);
+  int status;
+  status = parse_args(argc, argv);
   if (status)
   {
     plogf(FAIL "parse_args.");
     return EXIT_FAILURE;
   }
   plogf(OK "parse_args.");
-  status = bootstrap();
+  if (!options.no_build && (options.language == C || options.language == CPP))
+    status = bootstrap();
   if (status)
   {
     plogf(FAIL "bootstrap.");
     return EXIT_FAILURE;
-  } else plogf(OK "bootstrap.");
-  pnotef(options.name);
+  }
+  else
+    plogf(OK "bootstrap.");
   status = aminit();
   if (status)
   {
     plogf(FAIL "aminit.");
     return EXIT_FAILURE;
-  } else plogf(OK "aminit.");
+  }
+  else
+    plogf(OK "aminit.");
   printf("completed.\n");
   return EXIT_SUCCESS;
 }
 
-int cleanup() {
+int
+cleanup()
+{
   return 0;
 }
 

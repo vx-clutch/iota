@@ -9,10 +9,11 @@
 
 typedef enum
 {
-  DEFAULT, // 0
-  C,       // 1
-  CPP,     // 2
-  PYTHON,  // 3
+  DEFAULT = 0,
+  C,       
+  CPP,    
+  PYTHON,
+  COUNT,
 } lang_t;
 
 typedef struct

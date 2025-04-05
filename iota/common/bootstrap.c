@@ -49,11 +49,19 @@ bootstrap()
   mkdir(options.name, 0700);
   pdebugf("write", "source directory");
   chdir(options.name);
-  
   pdebugf("change to", options.name);
-  fp = fopen("main.c", "w");
-  fprintf(fp, "%s", __SOURCE[(int)options.language]);
-  pdebugf("write", "C source code");
+
+  char *prefix = "main.";
+  char *path = malloc(strlen(prefix) + strlen(tostring(options.language)));
+  strcpy(path, prefix);
+  if (options.language == PYTHON)
+    strcat(path, "py");
+  else
+    strcat(path, tostring(options.language));
+  fp = fopen(path, "w");
+  pdebugf("language index", "%d", options.language);
+  fprintf(fp, "%s", __SOURCE[options.language]);
+  pdebugf("write", "%s source code", tostring(options.language));
   fclose(fp);
   /* before returning it is important to set the current working directory back
    * to the root directory of the project because if other function need to

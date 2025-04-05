@@ -1,6 +1,5 @@
 To-do for 1.0
+  - Complete cleanup in main.c
   - Polish
   - Test and fix all errors.
   - Fix -no-markdown & -no-build
-  - Implement build systems
-  - Change the source code strings to arrry that can be indexed with lang_t enum
