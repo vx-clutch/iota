@@ -59,6 +59,7 @@ bootstrap()
   strcpy(path, prefix);
   if (options.language == PYTHON)
     strcat(path, "py");
+  else if(options.language == DEFAULT) ;
   else
     strcat(path, tostring(options.language));
   fp = fopen(path, "w");
