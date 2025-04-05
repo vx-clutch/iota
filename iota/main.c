@@ -2,6 +2,7 @@
 // See end of file for extended copyright information.
 
 #include "common/bootstrap.h"
+#include "options.h"
 #include "parse_args.h"
 #include "aminit.h"
 #include "syslog/error.h"
@@ -33,6 +34,7 @@ main(int argc, char **argv)
     plogf(FAIL "bootstrap.");
     return EXIT_FAILURE;
   } else plogf(OK "bootstrap.");
+  pnotef(options.name);
   status = aminit();
   if (status)
   {

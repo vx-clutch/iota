@@ -4,6 +4,7 @@
 #include "aminit.h"
 #include "options.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #ifndef _GIT_EMAIL
@@ -20,7 +21,8 @@ configure()
           "-Werror foreign "
           "subdir-objects])\n\nAC_PROG_CC\nAC_CONFIG_HEADERS([%s/"
           "config.h])\nAC_CONFIG_FILES([\n\tMakefile\n\t%s/"
-          "Makefile\n])\nAC_OUTPUT", options.name, _GIT_EMAIL, options.name, options.name);
+          "Makefile\n])\nAC_OUTPUT",
+          options.name, _GIT_EMAIL, options.name, options.name);
   fclose(fp);
   return 0;
 }
@@ -31,11 +33,12 @@ makefile()
   FILE *fp;
   fp = fopen("Makefile.am", "w"); // while at the root level of the project
   if (options.no_markdown)
-    fprintf(fp, "SUBDIRS = %s/\ndist_doc_DATA = README");
+    fprintf(fp, "SUBDIRS = %s/\ndist_doc_DATA = README", options.name);
   else
-    fprintf(fp, "SUBDIRS = %s/\ndist_doc_DATA = README.md");
+    fprintf(fp, "SUBDIRS = %s/\ndist_doc_DATA = README.md", options.name);
   fp = fopen(strcat(options.name, "/Makefile.am"), "w");
-  fprintf(fp, "bin_PROGRAMS = %s\n%s_SOURCES = main.c", options.name, options.name);
+  fprintf(fp, "bin_PROGRAMS = %s\n%s_SOURCES = main.c", options.name,
+          options.name);
   fclose(fp);
   return 0;
 }
