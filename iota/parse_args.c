@@ -130,8 +130,7 @@ parse_args(int argc, char **argv)
   pdebugf("name", options.name);
   pdebugf("lang", lang_arg);
 
-  size_t i;
-  for (i = 0; lang_arg[i]; i++)
+  for (size_t i = 0; lang_arg[i]; i++)
     lang_arg[i] = toupper(lang_arg[i]);
 
   pdebugf("lang", lang_arg);

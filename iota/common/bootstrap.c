@@ -5,6 +5,7 @@
 #include "../syslog/error.h"
 #include "templates.h"
 #include <assert.h>
+#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
@@ -28,8 +29,7 @@ bootstrap()
   else
     pfatalf("directory with the name %s already exists.", options.name);
   err = chdir(options.name);
-  if (err)
-    perrorf(strerror(errno));
+  if (err) perrorf(strerror(errno));
   fp = fopen("AUTHORS", "w");
   fp = fopen("INSTALL", "w");
 
@@ -61,6 +61,10 @@ bootstrap()
   char *path = malloc(len);
   strcpy(path, prefix);
   pdebugf("path", path);
+  char *ext_buf = tostring(options.language);
+  for (size_t i = 0; ext_buf[i]; i++)
+    ext_buf[i] = toupper(ext_buf[i]);
+  pdebugf("ext_buf", ext_buf);
   if (options.language == PYTHON)
     strcat(path, "py");
   else
