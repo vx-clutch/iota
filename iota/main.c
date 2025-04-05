@@ -30,8 +30,7 @@ main(int argc, char **argv)
     return EXIT_FAILURE;
   }
   plogf(OK "parse_args.");
-  if (!options.no_build && (options.language == C || options.language == CPP))
-    status = bootstrap();
+  status = bootstrap();
   if (status)
   {
     plogf(FAIL "bootstrap.");
@@ -39,7 +38,8 @@ main(int argc, char **argv)
   }
   else
     plogf(OK "bootstrap.");
-  status = aminit();
+  if (!options.no_build && (options.language == C || options.language == CPP))
+    status = aminit();
   if (status)
   {
     plogf(FAIL "aminit.");
