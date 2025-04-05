@@ -5,6 +5,7 @@
 #include "../syslog/error.h"
 #include "templates.h"
 #include <assert.h>
+#include <errno.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
@@ -26,6 +27,7 @@ bootstrap()
   else
     pfatalf("directory with the name %s already exists.", options.name);
   chdir(options.name);
+  perrorf(strerror(errno));
   fp = fopen("AUTHORS", "w");
   fp = fopen("INSTALL", "w");
 
