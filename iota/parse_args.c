@@ -125,7 +125,7 @@ parse_args(int argc, char **argv)
   }
 
   options.name = argv[optind++];
-  for (size_t i = 0; options.name[i]; i++)
+  for (size_t i = 0; options.name[i] != '\0'; i++)
     options.name[i] = tolower((unsigned char)options.name[i]);
   char *lang_arg = argv[optind++];
 

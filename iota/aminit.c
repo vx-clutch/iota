@@ -36,7 +36,9 @@ makefile()
     fprintf(fp, "SUBDIRS = %s/\ndist_doc_DATA = README", options.name);
   else
     fprintf(fp, "SUBDIRS = %s/\ndist_doc_DATA = README.md", options.name);
-  fp = fopen(strcat(options.name, "/Makefile.am"), "w");
+  char* fp_buff;
+  sprintf(fp_buff, "%s/Makefile.am", options.name);
+  fp = fopen(fp_buff, "w");
   fprintf(fp, "bin_PROGRAMS = %s\n%s_SOURCES = main.c", options.name,
           options.name);
   fclose(fp);
