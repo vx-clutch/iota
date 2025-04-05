@@ -17,6 +17,8 @@ configure()
 {
   FILE *fp;
   fp = fopen("configure.ac", "w"); // while at the root level of the project
+  if (!fp)
+    pfatalf("could not read file.");
   fprintf(fp,
           "AC_INIT([%s], [1.0], [%s])\nAM_INIT_AUTOMAKE([-Wall "
           "-Werror foreign "
@@ -33,6 +35,8 @@ makefile()
 {
   FILE *fp;
   fp = fopen("Makefile.am", "w"); // while at the root level of the project
+  if (!fp)
+    pfatalf("could not read file.");
   if (options.no_markdown)
     fprintf(fp, "SUBDIRS = %s/\ndist_doc_DATA = README", options.name);
   else
