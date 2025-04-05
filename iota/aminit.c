@@ -62,7 +62,7 @@ aminit()
   // these need to be status checks
   configure();
   makefile();
-  int status = system("autoreconf -i && ./configure");
+  int status = system("autoreconf -i && ./configure > /dev/null 2>&1");
   if (status == -1) return -1;
 
   return 0;
