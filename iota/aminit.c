@@ -46,6 +46,7 @@ makefile()
   strcat(path, suffix);
 
   fp = fopen(path, "w");
+  free(path);
   fprintf(fp, "bin_PROGRAMS = %s\n%s_SOURCES = main.c", options.name,
           options.name);
   fclose(fp);
