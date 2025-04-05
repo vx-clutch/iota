@@ -27,6 +27,7 @@ bootstrap()
   else
     pfatalf("directory with the name %s already exists.", options.name);
   chdir(options.name);
+  plogf(INFO "idk what happening");
   perrorf(strerror(errno));
   fp = fopen("AUTHORS", "w");
   fp = fopen("INSTALL", "w");
