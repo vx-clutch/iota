@@ -126,11 +126,15 @@ parse_args(int argc, char **argv)
   }
 
   options.name = argv[optind++];
-  size_t i;
-  for (i = 0; options.name[i]; i++)
-    options.name[i] = tolower((unsigned char)options.name[i]);
-  assert(options.name[i] == '\0');
   char *lang_arg = argv[optind++];
+  pdebugf("name", options.name);
+  pdebugf("lang", lang_arg);
+
+  size_t i;
+  for (i = 0; lang_arg[i]; i++)
+    lang_arg[i] = toupper(lang_arg[i]);
+
+  pdebugf("lang", lang_arg);
 
   /*plogf(INFO "Project name was set to %s.", options.name);*/
   /*getcwd(absolute_path, _SIZE__ABSOLUTE_PATH);*/

@@ -53,14 +53,18 @@ makefile()
   strcpy(path, options.name);
   strcat(path, suffix);
 
-  pdebugf("fp", path);
   fp = fopen(path, "w");
+  pdebugf("fp", path);
   if (!fp) {
     pdebugf("fatal", "exiting.");
     pfatalf("could not read file.");
   }
-  printf("bin_PROGRAMS = %s\n%s_SOURCES = main.c", options.name,
-          options.name);
+  if (options.language == C)
+    fprintf(fp, "bin_PROGRAMS = %s\n%s_SOURCES = main.c", options.name,
+            options.name);
+  else
+    fprintf(fp, "bin_PROGRAMS = %s\n%s_SOURCES = main.cc", options.name,
+            options.name);
   free(path);
   fclose(fp);
   return 0;

@@ -5,13 +5,14 @@
 #include "../syslog/error.h"
 #include "templates.h"
 #include <assert.h>
-#include <errno.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
 
 struct stat st = {0};
+
+int errno = 0;
 
 int
 bootstrap()
@@ -26,9 +27,9 @@ bootstrap()
   }
   else
     pfatalf("directory with the name %s already exists.", options.name);
-  chdir(options.name);
-  plogf(INFO "idk what happening");
-  perrorf(strerror(errno));
+  err = chdir(options.name);
+  if (err)
+    perrorf(strerror(errno));
   fp = fopen("AUTHORS", "w");
   fp = fopen("INSTALL", "w");
 
@@ -55,13 +56,16 @@ bootstrap()
   pdebugf("change to", options.name);
 
   char *prefix = "main.";
-  char *path = malloc(strlen(prefix) + strlen(tostring(options.language)));
+  size_t len = strlen(prefix) + strlen(tostring(options.language)) + 1;
+  pdebugf("len", "%d", (int)len);
+  char *path = malloc(len);
   strcpy(path, prefix);
+  pdebugf("path", path);
   if (options.language == PYTHON)
     strcat(path, "py");
-  else if(options.language == DEFAULT) ;
   else
     strcat(path, tostring(options.language));
+  pdebugf("path", path);
   fp = fopen(path, "w");
   pdebugf("language index", "%d", options.language);
   fprintf(fp, "%s", __SOURCE[options.language]);
