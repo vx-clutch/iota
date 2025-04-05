@@ -48,7 +48,7 @@ makefile()
   fp = fopen(path, "w");
   free(path);
   pdebugf("pre fprinf", "wowza");
-  fprintf(fp, "bin_PROGRAMS = %s\n%s_SOURCES = main.c", options.name,
+  printf("bin_PROGRAMS = %s\n%s_SOURCES = main.c", options.name,
           options.name);
   pdebugf("post fprinf", "wowzer");
   fclose(fp);
