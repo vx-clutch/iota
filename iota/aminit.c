@@ -3,6 +3,7 @@
 
 #include "aminit.h"
 #include "options.h"
+#include "syslog/error.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -36,9 +37,15 @@ makefile()
     fprintf(fp, "SUBDIRS = %s/\ndist_doc_DATA = README", options.name);
   else
     fprintf(fp, "SUBDIRS = %s/\ndist_doc_DATA = README.md", options.name);
-  char* fp_buff;
-  sprintf(fp_buff, "%s/Makefile.am", options.name);
-  fp = fopen(fp_buff, "w");
+
+  const char *suffix = "/Makefile.am";
+  size_t len = strlen(options.name) + strlen(suffix) + 1;
+  char *path = malloc(len);
+  if (!path) pfatalf("Malloc failed");
+  strcpy(path, options.name);
+  strcat(path, suffix);
+
+  fp = fopen(path, "w");
   fprintf(fp, "bin_PROGRAMS = %s\n%s_SOURCES = main.c", options.name,
           options.name);
   fclose(fp);

@@ -5,6 +5,7 @@
 #include "config.h"
 #include "options.h"
 #include "syslog/error.h"
+#include <assert.h>
 #include <ctype.h>
 #include <getopt.h>
 #include <stddef.h>
@@ -125,8 +126,10 @@ parse_args(int argc, char **argv)
   }
 
   options.name = argv[optind++];
-  for (size_t i = 0; options.name[i] != '\0'; i++)
+  size_t i;
+  for (i = 0; options.name[i]; i++)
     options.name[i] = tolower((unsigned char)options.name[i]);
+  assert(options.name[i] == '\0');
   char *lang_arg = argv[optind++];
 
   /*plogf(INFO "Project name was set to %s.", options.name);*/
