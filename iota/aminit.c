@@ -46,11 +46,12 @@ makefile()
   strcat(path, suffix);
 
   fp = fopen(path, "w");
-  free(path);
-  pdebugf("pre fprinf", "wowza");
+  pdebugf("fp", path);
+  if (!fp)
+    pfatalf("could not open file.");
   printf("bin_PROGRAMS = %s\n%s_SOURCES = main.c", options.name,
           options.name);
-  pdebugf("post fprinf", "wowzer");
+  free(path);
   fclose(fp);
   return 0;
 }
