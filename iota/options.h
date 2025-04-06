@@ -6,12 +6,13 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 typedef enum
 {
   DEFAULT = 0,
   C,       
-  CPP,    
+  CC,    
   PYTHON,
   COUNT,
 } lang_t;
@@ -35,14 +36,15 @@ typedef struct
 #define _SIZE__ABSOLUTE_PATH 1024
 static char absolute_path[_SIZE__ABSOLUTE_PATH];
 
-static char *
-tostring(lang_t src)
+static const char *
+tostring(lang_t src, bool getext)
 {
-  if (src == C) return "C";
-  if (src == CPP) return "CPP";
-  if (src == PYTHON) return "PYTHON";
-  if (src == DEFAULT) return "DEFAULT";
-  return NULL;
+  switch (src) {
+    case C: return getext ? "C" : "c";
+    case CC: return getext ? "CC" : "cc";
+    case PYTHON: return getext ? "PYTHON" : "py";
+    default : return NULL;
+  }
 }
 
 extern __options options;

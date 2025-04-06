@@ -5,7 +5,6 @@
 #include "../syslog/error.h"
 #include "templates.h"
 #include <assert.h>
-#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
@@ -61,24 +60,18 @@ bootstrap()
   pdebugf("change to", options.name);
 
   char *prefix = "main.";
-  size_t len = strlen(prefix) + strlen(tostring(options.language)) + 1;
+  size_t len = strlen(prefix) + strlen(tostring(options.language, true)) + 1;
   pdebugf("len", "%d", (int)len);
   char *path = malloc(len);
   strcpy(path, prefix);
   pdebugf("path", path);
-  char *ext_buf = tostring(options.language);
-  for (size_t i = 0; ext_buf[i]; i++)
-    ext_buf[i] = toupper(ext_buf[i]);
+  const char *ext_buf = tostring(options.language, true);
   pdebugf("ext_buf", ext_buf);
-  if (options.language == PYTHON)
-    strcat(path, "py");
-  else
-    strcat(path, tostring(options.language));
   pdebugf("path", path);
   fp = fopen(path, "w");
   pdebugf("language index", "%d", options.language);
   fprintf(fp, "%s", __SOURCE[options.language]);
-  pdebugf("write", "%s source code", tostring(options.language));
+  pdebugf("write", "%s source code", tostring(options.language, false));
   fclose(fp);
   /* before returning it is important to set the current working directory back
    * to the root directory of the project because if other function need to

@@ -14,10 +14,10 @@
 #include <unistd.h>
 
 #define langcmp(src)                                                           \
-  pdebugf("langcmp", tostring(src));                                           \
-  if (!strcmp(tostring(src), lang_arg))                                        \
+  pdebugf("langcmp", tostring(src, false));                                    \
+  if (!strcmp(tostring(src, false), lang_arg))                                 \
   {                                                                            \
-    pdebugf("langcmp", "%d", strcmp(tostring(src), lang_arg));                 \
+    pdebugf("langcmp", "%d", strcmp(tostring(src, false), lang_arg));          \
     options.language = src;                                                    \
     goto __found;                                                              \
   }
@@ -144,7 +144,7 @@ parse_args(int argc, char **argv)
 
   /* This compares the argument at position one to a string and if it is true it
    * sets options.language to said language */
-  langcmp(CPP);
+  langcmp(CC);
   langcmp(C);
   langcmp(PYTHON);
   pdebugf("langcmp", "py"); // manual check for 'py'
@@ -156,7 +156,7 @@ parse_args(int argc, char **argv)
   }
   goto __default;
 __found:
-  plogf(OK "Project language was set to %s.", tostring(options.language));
+  plogf(OK "Project language was set to %s.", tostring(options.language, false));
   return 0;
 __default:
   plogf(INFO "Project language was set to default.");

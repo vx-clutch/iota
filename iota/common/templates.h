@@ -10,7 +10,7 @@
 static const char *__SOURCE[COUNT] = {
     [DEFAULT] = "", // default case
     [C] = "#include <stdio.h>\n\nint\nmain(void)\n{\n\tprintf(\"Hello from Iota!\");\n\treturn 0;\n}",
-    [CPP] = "#include <iostream>\n\nint\nmain(void)\n{\n\tstd::cout << \"Hello from Iota!\" << std::endl;\n\treturn 0;\n}",
+    [CC] = "#include <iostream>\n\nint\nmain(void)\n{\n\tstd::cout << \"Hello from Iota!\" << std::endl;\n\treturn 0;\n}",
     [PYTHON] = "print(\"Hello from Iota!\")"
 };
 // clang-format on

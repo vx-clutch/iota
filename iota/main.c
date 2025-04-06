@@ -38,7 +38,7 @@ main(int argc, char **argv)
   }
   else
     plogf(OK "bootstrap.");
-  if (!options.no_build && (options.language == C || options.language == CPP))
+  if (!options.no_build && (options.language == C || options.language == CC))
     status = aminit();
   if (status)
   {
