@@ -26,6 +26,11 @@ bootstrap()
     mkdir(options.name, 0700);
     pdebugf("write", "project root directory");
   }
+  else if (options.overwrite)
+  {
+    rmdir(options.name);
+    mkdir(options.name, 0700);
+  }
   else
     pfatalf("directory with the name %s already exists.", options.name);
   err = chdir(options.name);
