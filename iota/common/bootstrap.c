@@ -60,7 +60,7 @@ bootstrap()
   pdebugf("change to", options.name);
 
   char *prefix = "main.";
-  char *ext = "c"; /* tostring(options.language, true)*/
+  char *ext = tostring(options.language, true);
   size_t len = strlen(prefix) + strlen(ext);
   pdebugf("len", "%d", (int)len);
 
