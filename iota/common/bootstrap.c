@@ -60,16 +60,16 @@ bootstrap()
   pdebugf("change to", options.name);
 
   char *prefix = "main.";
-  size_t len = strlen(prefix) + strlen(tostring(options.language, true)) + 1;
+  char *ext = "c"; /* tostring(options.language, true)*/
+  size_t len = strlen(prefix) + strlen(ext);
   pdebugf("len", "%d", (int)len);
+
   char *path = malloc(len);
   strcpy(path, prefix);
+  strcat(path, ext);
   pdebugf("path", path);
-  const char *ext_buf = tostring(options.language, true);
-  pdebugf("ext_buf", ext_buf);
-  pdebugf("path", path);
+
   fp = fopen(path, "w");
-  pdebugf("language index", "%d", options.language);
   fprintf(fp, "%s", __SOURCE[options.language]);
   pdebugf("write", "%s source code", tostring(options.language, false));
   fclose(fp);

@@ -4,15 +4,16 @@
 #ifndef OPT_H
 #define OPT_H
 
+#include "syslog/error.h"
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
-#include <stdbool.h>
 
 typedef enum
 {
   DEFAULT = 0,
-  C,       
-  CC,    
+  C,
+  CC,
   PYTHON,
   COUNT,
 } lang_t;
@@ -33,22 +34,10 @@ typedef struct
   lang_t language;
 } __options;
 
-#define _SIZE__ABSOLUTE_PATH 1024
-static char absolute_path[_SIZE__ABSOLUTE_PATH];
-
-static const char *
-tostring(lang_t src, bool getext)
-{
-  switch (src) {
-    case C: return getext ? "C" : "c";
-    case CC: return getext ? "CC" : "cc";
-    case PYTHON: return getext ? "PYTHON" : "py";
-    default : return NULL;
-  }
-}
+char *
+tostring(lang_t, bool);
 
 extern __options options;
-extern char absolute_path[];
 
 #endif
 
