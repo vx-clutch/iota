@@ -1,9 +1,5 @@
 # ι
-### iota
-An opinionated project init tool
+This is the iota dev branch
 
-### Quick Start
-    iota <NAME> <LANGUAGE> <OPTIONS>
-
-#### Example for C
-    iota foo c
+## Current Feature
+Module system
