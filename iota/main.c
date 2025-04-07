@@ -1,9 +1,9 @@
 // Copyright (C) 2025 vx-clutch ( owestness@gmail.com )
 // See end of file for extended copyright information.
 
-#include "aminit.h"
 #include "common/bootstrap.h"
 #include "options.h"
+#include "init.h"
 #include "parse_args.h"
 #include "syslog/error.h"
 #include <stdlib.h>
@@ -17,9 +17,8 @@ main(int argc, char **argv)
   parse_args(argc, argv);
   bootstrap();
   slog("Initial files written.");
-  if (!options.no_build && options.language == C)
+  if (!options.no_build && options.language == LANG_C)
   {
-    aminit();
     slog("Autotools build system initialized.");
   }
   slog("Done.");

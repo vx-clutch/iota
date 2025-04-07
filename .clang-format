@@ -9,6 +9,5 @@ PointerAlignment: Right
 ColumnLimit: 80
 SortIncludes: true
 AllowShortIfStatementsOnASingleLine: true
+AllowShortBlocksOnASingleLine: true
 RemoveBracesLLVM: true
-BraceWrapping:
-  AfterControlStatement: false

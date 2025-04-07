@@ -3,6 +3,7 @@
 
 #include "parse_args.h"
 #include "config.h"
+#include "init.h"
 #include "options.h"
 #include "syslog/error.h"
 #include <assert.h>
@@ -32,7 +33,7 @@ __options options = {
     .no_build = 0,
     .no_markdown = 0,
     .name = "",
-    .language = DEFAULT,
+    .language = LANG_DEFAULT,
 };
 
 void
@@ -140,19 +141,11 @@ parse_args(int argc, char **argv)
 
   /* This compares the argument at position one to a string and if it is true it
    * sets options.language to said language */
-  langcmp(CC);
-  langcmp(C);
-  langcmp(PYTHON);
-  pdebugf("langcmp", "py"); // manual check for 'py'
-  if (!strcmp("py", lang_arg))
-  {
-    pdebugf("langcmp", "%d", strcmp("py", lang_arg));
-    options.language = PYTHON;
-    goto __found;
-  }
+  langcmp(LANG_C);
   goto __default;
 __found:
-  plogf(OK "Project language was set to %s.", tostring(options.language, false));
+  plogf(OK "Project language was set to %s.",
+        tostring(options.language, false));
   return 0;
 __default:
   plogf(INFO "Project language was set to default.");

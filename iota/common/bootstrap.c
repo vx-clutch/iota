@@ -3,7 +3,7 @@
 
 #include "bootstrap.h"
 #include "../syslog/error.h"
-#include "templates.h"
+#include "../init.h"
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
@@ -54,7 +54,7 @@ bootstrap()
   pdebugf("change to", options.name);
 
   char *prefix = "main.";
-  char *ext = tostring(options.language, true);
+  char *ext = getext(options.language);
   size_t len = strlen(prefix) + strlen(ext);
   pdebugf("len", "%d", (int)len);
 
@@ -64,8 +64,7 @@ bootstrap()
   pdebugf("path", path);
 
   fp = fopen(path, "w");
-  fprintf(fp, "%s", __SOURCE[options.language]);
-  pdebugf("write", "%s source code", tostring(options.language, false));
+  fprintf(fp, "%s", LANG_SRC[options.language]);
   fclose(fp);
   /* before returning it is important to set the current working directory back
    * to the root directory of the project because if other function need to

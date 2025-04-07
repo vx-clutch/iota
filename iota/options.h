@@ -7,15 +7,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
-
-typedef enum
-{
-  DEFAULT = 0,
-  C,
-  CC,
-  PYTHON,
-  COUNT,
-} lang_t;
+#include "init.h"
 
 typedef struct
 {
@@ -31,9 +23,6 @@ typedef struct
   char *name;
   lang_t language;
 } __options;
-
-char *
-tostring(lang_t, bool);
 
 extern __options options;
 

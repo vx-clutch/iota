@@ -1,5 +1,1 @@
 lang(C, "#include <stdio.h>\n\nint\nmain(void)\n{\n\tprintf(\"Hello from Iota!\\n\");\n\treturn 0;\n}")
-build(configure.ac, "AC_INIT([%s], [1.0], [%s])\nAM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])\n\nAC_PROG_CC\nAC_CONFIG_HEADERS([%s/config.h])\nAC_CONFIG_FILES([\n\tMakefile\n\t%s/Makefile\n])\nAC_OUTPUT", options.name, options.email, options.name, options.name)
-build(Makefile.am, "SUBDIRS = %s/\ndist_doc_DATA = README.md", options.name)
-build_sub(Makefile.am, "bin_PROGRAMS = %s\n%s_SOURCES = main.c")
-prebuild("autoreconf -i && ./configure 2>&1 | grep -v '^checking'")
