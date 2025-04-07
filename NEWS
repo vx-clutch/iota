@@ -3,3 +3,6 @@ To-do for 1.0
   - Polish
   - Test and fix all errors.
   - Fix -no-markdown & -no-build
+  - Modularize
+    - c.init
+    - .vimrc
