@@ -1,5 +1,3 @@
-```lang.c
-// TODO: impl a specificiation
-```
-
-m4 for D-style mixins over lang_t
+## Options
+* m4 for D-style mixins over lang_t
+* X-macro
