@@ -31,7 +31,6 @@ __options options = {
     .l_mit = 0,
     .no_build = 0,
     .no_markdown = 0,
-    .overwrite = 0,
     .name = "",
     .language = DEFAULT,
 };
@@ -69,7 +68,7 @@ parse_args(int argc, char **argv)
     }
   }
 
-  while ((opt = getopt_long(argc, argv, "vf", long_options, &option_index)) !=
+  while ((opt = getopt_long(argc, argv, "v", long_options, &option_index)) !=
          -1)
   {
     /* This log only gets run after -v has been parsed. */
@@ -77,9 +76,6 @@ parse_args(int argc, char **argv)
     switch (opt)
     {
     case 'v':
-      options.verbose = 1;
-      break;
-    case 'f':
       options.verbose = 1;
       break;
     case 1:

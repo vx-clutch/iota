@@ -61,6 +61,11 @@ plogf(int status, const char *format, ...);
 void
 pnotef(const char *format, ...);
 
+
+
+#define slog(src) printf("==> %s\n", src)
+
+
 #endif
 
 /* vtc is a simple and extensible compiler.

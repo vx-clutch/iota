@@ -6,9 +6,7 @@
 #include "options.h"
 #include "parse_args.h"
 #include "syslog/error.h"
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 int
 cleanup();
@@ -16,38 +14,15 @@ cleanup();
 int
 main(int argc, char **argv)
 {
-  const char *E_SILENT_ = getenv("NOALPHA");
-  if (E_SILENT_ == NULL)
-    pnotef(
-        "iota is in its *beta* stages of development expect missing features "
-        "or other errors. Please report any bugs to the developers. You can "
-        "silence this message by setting the envirement variable 'NOALPHA'.");
-  int status;
-  status = parse_args(argc, argv);
-  if (status)
+  parse_args(argc, argv);
+  bootstrap();
+  slog("Initial files written.");
+  if (!options.no_build && options.language == C)
   {
-    plogf(FAIL "parse_args.");
-    return EXIT_FAILURE;
+    aminit();
+    slog("Autotools build system initialized.");
   }
-  plogf(OK "parse_args.");
-  status = bootstrap();
-  if (status)
-  {
-    plogf(FAIL "bootstrap.");
-    return EXIT_FAILURE;
-  }
-  else
-    plogf(OK "bootstrap.");
-  if (!options.no_build && (options.language == C || options.language == CC))
-    status = aminit();
-  if (status)
-  {
-    plogf(FAIL "aminit.");
-    return EXIT_FAILURE;
-  }
-  else
-    plogf(OK "aminit.");
-  printf("completed.\n");
+  slog("Done.");
   return EXIT_SUCCESS;
 }
 

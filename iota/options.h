@@ -4,7 +4,6 @@
 #ifndef OPT_H
 #define OPT_H
 
-#include "syslog/error.h"
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -29,7 +28,6 @@ typedef struct
   uint8_t l_mit;
   uint8_t no_build;
   uint8_t no_markdown;
-  uint8_t overwrite;
   char *name;
   lang_t language;
 } __options;

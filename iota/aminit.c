@@ -79,7 +79,8 @@ aminit()
   // these need to be status checks
   configure();
   makefile();
-  int status = system("autoreconf -i && ./configure > /dev/null 2>&1");
+  printf("=> Configuring autotools.\n");
+  int status = system("autoreconf -i && ./configure 2>&1 | grep -v '^checking'");
   if (status == -1) return -1;
 
   return 0;
