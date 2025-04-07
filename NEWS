@@ -4,3 +4,4 @@ To-do for 1.0
   - Test and fix all errors.
   - Fix -no-markdown & -no-build
   - Modularize
+  - Sanitize input
