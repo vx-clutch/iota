@@ -5,3 +5,4 @@ To-do for 1.0
   - Fix -no-markdown & -no-build
   - Modularize
   - Sanitize input
+  - .gitignore
