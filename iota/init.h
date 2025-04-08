@@ -10,11 +10,12 @@ typedef enum {
 } lang_t;
 
 static const char *LANG_SRC[LANG_COUNT] = {
+  [LANG_DEFAULT] = "",
 #define lang(name, src) [LANG_##name] = src,
 #include "language.objects/clang.lo"
 #undef lang
 };
 
-char *getext(lang_t);
+char *tostring(lang_t);
 
 #endif

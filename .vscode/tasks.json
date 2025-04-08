@@ -1,0 +1,28 @@
+// .vscode/tasks.json
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "clean-foo",
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "-rf",
+                "foo/"
+            ],
+            "problemMatcher": [],
+        },
+        {
+            "label": "build",
+            "type": "shell",
+            "dependsOn": [
+                "clean-foo"
+            ],
+            "command": "make",
+            "args": [],
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Build C program"
+        }
+    ]
+}

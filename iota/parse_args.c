@@ -14,15 +14,6 @@
 #include <string.h>
 #include <unistd.h>
 
-#define langcmp(src)                                                           \
-  pdebugf("langcmp", tostring(src, false));                                    \
-  if (!strcmp(tostring(src, false), lang_arg))                                 \
-  {                                                                            \
-    pdebugf("langcmp", "%d", strcmp(tostring(src, false), lang_arg));          \
-    options.language = src;                                                    \
-    goto __found;                                                              \
-  }
-
 __options options = {
     .verbose = 0,
     .debug = 0,
@@ -128,27 +119,21 @@ parse_args(int argc, char **argv)
 
   options.name = argv[optind++];
   char *lang_arg = argv[optind++];
-  pdebugf("name", options.name);
-  pdebugf("lang", lang_arg);
+
+  lang_t matched = LANG_COUNT;
+  for (lang_t i = 0; i < LANG_COUNT; i++)
+  {
+    if (strcmp(lang_arg, tostring(i)) == 0)
+    {
+      matched = i;
+      break;
+    }
+  }
+
+  if (matched != LANG_COUNT) options.language = matched;
 
   for (size_t i = 0; lang_arg[i]; i++)
     lang_arg[i] = toupper(lang_arg[i]);
-
-  pdebugf("lang", lang_arg);
-
-  /*plogf(INFO "Project name was set to %s.", options.name);*/
-  /*getcwd(absolute_path, _SIZE__ABSOLUTE_PATH);*/
-
-  /* This compares the argument at position one to a string and if it is true it
-   * sets options.language to said language */
-  langcmp(LANG_C);
-  goto __default;
-__found:
-  plogf(OK "Project language was set to %s.",
-        tostring(options.language, false));
-  return 0;
-__default:
-  plogf(INFO "Project language was set to default.");
   return 0;
 }
 

@@ -1,6 +1,3 @@
-# Stinky editor garbage
-.vscode/
-
 # Build system files
 autom4te.cache/
 iota/.deps/

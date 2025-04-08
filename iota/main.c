@@ -17,7 +17,7 @@ main(int argc, char **argv)
   parse_args(argc, argv);
   bootstrap();
   slog("Initial files written.");
-  if (!options.no_build && options.language == LANG_C)
+  if (!options.no_build && options.language == LANG_c)
   {
     slog("Autotools build system initialized.");
   }

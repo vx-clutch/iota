@@ -1,1 +1,1 @@
-lang(C, "#include <stdio.h>\n\nint\nmain(void)\n{\n\tprintf(\"Hello from Iota!\\n\");\n\treturn 0;\n}")
+lang(c, "#include <stdio.h>\n\nint\nmain(void)\n{\n\tprintf(\"Hello from Iota!\\n\");\n\treturn 0;\n}")

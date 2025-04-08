@@ -2,8 +2,9 @@
 // See end of file for extended copyright information.
 
 #include "bootstrap.h"
-#include "../syslog/error.h"
 #include "../init.h"
+#include "../options.h"
+#include "../syslog/error.h"
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
@@ -21,11 +22,9 @@ bootstrap()
   FILE *fp;
   int err;
   if (stat(options.name, &st) == -1)
-  {
     mkdir(options.name, 0700);
-    pdebugf("write", "project root directory");
-  }
-  else pfatalf("directory with the name %s already exists.", options.name);
+  else
+    pfatalf("directory with the name %s already exists.", options.name);
   err = chdir(options.name);
   if (err) perrorf(strerror(errno));
   fp = fopen("AUTHORS", "w");
@@ -37,7 +36,6 @@ bootstrap()
     if (!fp) pfatalf("Failed to open README.md for writing");
     fprintf(fp, "# %s", options.name);
     fclose(fp);
-    pdebugf("write", "README.md");
   }
   else if (options.no_markdown)
   {
@@ -45,23 +43,18 @@ bootstrap()
     if (!fp) pfatalf("Failed to open README for writing");
     fprintf(fp, "%s", options.name);
     fclose(fp);
-    pdebugf("write", "README");
   }
 
   mkdir(options.name, 0700);
-  pdebugf("write", "source directory");
   chdir(options.name);
-  pdebugf("change to", options.name);
 
   char *prefix = "main.";
-  char *ext = getext(options.language);
+  char *ext = tostring(options.language);
   size_t len = strlen(prefix) + strlen(ext);
-  pdebugf("len", "%d", (int)len);
 
   char *path = malloc(len);
   strcpy(path, prefix);
   strcat(path, ext);
-  pdebugf("path", path);
 
   fp = fopen(path, "w");
   fprintf(fp, "%s", LANG_SRC[options.language]);
