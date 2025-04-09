@@ -1,4 +1,4 @@
-// Copyright (C) 2025 TiredWithJoy (  )
+// Copyright (C) 2025 TiredWithJoy (direct to owestness@gmail.com)
 // See end of file for extended copyright information.
 
 #ifndef OPT_H
