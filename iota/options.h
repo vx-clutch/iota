@@ -20,6 +20,7 @@ typedef struct
   uint8_t l_mit;
   uint8_t no_build;
   uint8_t no_markdown;
+  uint8_t dry;
   char *name;
   lang_t language;
 } __options;

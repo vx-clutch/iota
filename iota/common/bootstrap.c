@@ -5,6 +5,7 @@
 #include "../init.h"
 #include "../options.h"
 #include "../syslog/error.h"
+#include "write.h"
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
@@ -22,31 +23,26 @@ bootstrap()
   FILE *fp;
   int err;
   if (stat(options.name, &st) == -1)
-    mkdir(options.name, 0700);
+  {
+    if (!options.dry) mkdir(options.name, 0700);
+  }
   else
     pfatalf("directory with the name %s already exists.", options.name);
-  err = chdir(options.name);
-  if (err) perrorf(strerror(errno));
-  fp = fopen("AUTHORS", "w");
-  fp = fopen("INSTALL", "w");
+  if (!options.dry) err = chdir(options.name);
+  if (err) perrorf(strerror(err));
+  iota_write("AUTHORS", "");
+  iota_write("INSTALL", "");
 
   if (!options.no_markdown)
-  {
-    fp = fopen("README.md", "w");
-    if (!fp) pfatalf("Failed to open README.md for writing");
-    fprintf(fp, "# %s", options.name);
-    fclose(fp);
-  }
+    iota_write("README.md", "# %s", options.name);
   else if (options.no_markdown)
-  {
-    fp = fopen("README", "w");
-    if (!fp) pfatalf("Failed to open README for writing");
-    fprintf(fp, "%s", options.name);
-    fclose(fp);
-  }
+    iota_write("README", "%s", options.name);
 
-  mkdir(options.name, 0700);
-  chdir(options.name);
+  if (!options.dry)
+  {
+    mkdir(options.name, 0700);
+    chdir(options.name);
+  }
 
   char *prefix = "main.";
   char *ext = tostring(options.language);
@@ -56,9 +52,7 @@ bootstrap()
   strcpy(path, prefix);
   strcat(path, ext);
 
-  fp = fopen(path, "w");
-  fprintf(fp, "%s", LANG_SRC[options.language]);
-  fclose(fp);
+  iota_write(path, "%s", LANG_SRC[options.language]);
   /* before returning it is important to set the current working directory back
    * to the root directory of the project because if other function need to
    * write files (aminit.c) they can be certain that they are starting from the

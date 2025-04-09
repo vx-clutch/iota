@@ -15,14 +15,12 @@
 #include <unistd.h>
 
 __options options = {
-    .verbose = 0,
     .debug = 0,
+    .dry = 0,
     .git = 0,
-    .l_bsd = 0,
-    .l_gpl = 0,
-    .l_mit = 0,
     .no_build = 0,
     .no_markdown = 0,
+    .verbose = 0,
     .name = "",
     .language = LANG_DEFAULT,
 };
@@ -39,8 +37,7 @@ parse_args(int argc, char **argv)
   struct option long_options[] = {
       {"version", no_argument, 0, 1}, {"help", no_argument, 0, 2},
       {"debug", no_argument, 0, 3},   {"git", no_argument, 0, 4},
-      {"Lbsd", no_argument, 0, 5},    {"Lgpl", no_argument, 0, 6},
-      {"Lmit", no_argument, 0, 7},    {0, 0, 0, 0}};
+      {"dry", no_argument, 0, 5},     {0, 0, 0, 0}};
   opterr = 0;
 
   // manual parse for '-no-build' and '-no-markdown'
@@ -83,19 +80,7 @@ parse_args(int argc, char **argv)
       options.git = 1;
       break;
     case 5:
-      options.l_bsd = 1;
-      break;
-    case 6:
-      options.l_gpl = 1;
-      break;
-    case 7:
-      options.l_mit = 1;
-      break;
-    case 8:
-      options.no_markdown = 1;
-      break;
-    case 9:
-      options.no_build = 1;
+      options.dry = 1;
       break;
     case '?':
       perrorf("unrecognized command-line argument '%s'.", argv[optind]);
@@ -145,13 +130,15 @@ print_help(void)
   printf("  --git\t\tInitialize git repository.\n");
   printf("  --help\tPrints out the help and exit.\n");
   printf("  --version\tPrints out the version number and exit.\n");
-  printf("  --Lbsd\tAdds the BSD license to the project.\n");
-  printf("  --Lgpl\tAdds the GPL license to the project.\n");
-  printf("  --Lmit\tAdds the MIT license to the project.\n");
-  printf("  --no-build\tDisable build system.\n");
-  printf("  --no-markdown\tReplace README.md with a text file version.\n");
+  printf("  --dry\tEnables dry mode.\n");
+  /*printf("  --Lbsd\tAdds the BSD license to the project.\n");*/
+  /*printf("  --Lgpl\tAdds the GPL license to the project.\n");*/
+  /*printf("  --Lmit\tAdds the MIT license to the project.\n");*/
+  /*printf("  --no-build\tDisable build system.\n");*/
+  /*printf("  --no-markdown\tReplace README.md with a text file version.\n");*/
   printf("  -v\t\tEnables verbose output.\n");
-  printf("  -f\t\tTurns on force mode, this will disable certain checks.\n");
+  /*printf("  -f\t\tTurns on force mode, this will disable certain
+   * checks.\n");*/
   plogf(INFO "Exiting");
   exit(0);
 }

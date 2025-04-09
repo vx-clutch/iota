@@ -9,7 +9,8 @@
             "program": "${workspaceFolder}/iota/iota",
             "args": [
                 "foo",
-                "c"
+                "c",
+                "--dry"
             ],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
