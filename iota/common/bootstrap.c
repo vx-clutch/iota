@@ -4,6 +4,7 @@
 #include "bootstrap.h"
 #include "../init.h"
 #include "../options.h"
+#include "../syslog/error.h"
 #include "write.h"
 #include <assert.h>
 #include <stdio.h>
@@ -17,21 +18,29 @@ int errno = 0;
 int bootstrap() {
   assert(options.name != NULL);
   iota_mkdir(options.name);
-  if (!options.dry) chdir(options.name);
-  else plogf("CHDIR", options.name);
-  
+  if (!options.dry)
+    chdir(options.name);
+  else
+    plogf("CHDIR", options.name);
+
   iota_write("AUTHORS", "");
   iota_write("INSTALL", "");
 
-  if (options.git && !options.dry && !options.verbose) system("git init -q");
-  else plogf("GIT", "init");
+  if (options.git && !options.dry && !options.verbose)
+    system("git init -q");
+  else
+    plogf("GIT", "init");
 
-  if (options.no_markdown) iota_write("README", "%s", options.name);
-  else iota_write("README.md", "# %s", options.name);
+  if (options.no_markdown)
+    iota_write("README", "%s", options.name);
+  else
+    iota_write("README.md", "# %s", options.name);
 
   iota_mkdir(options.name);
-  if (!options.dry) chdir(options.name);
-  else plogf("CHDIR", "%s/%s", options.name, options.name);
+  if (!options.dry)
+    chdir(options.name);
+  else
+    plogf("CHDIR", "%s/%s", options.name, options.name);
 
   char *prefix = "main.";
   char *ext = tostring(options.language);
@@ -46,8 +55,10 @@ int bootstrap() {
    * to the root directory of the project because if other function need to
    * write files (aminit.c) they can be certain that they are starting from the
    * right place */
-  if (!options.dry) chdir(".."); // sets the current working directory to the root level
-  else plogf("CHDIR", options.name);
+  if (!options.dry)
+    chdir(".."); // sets the current working directory to the root level
+  else
+    plogf("CHDIR", options.name);
   return 0;
 }
 /* iota is an opinionated init tool.
