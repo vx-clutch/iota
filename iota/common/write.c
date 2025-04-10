@@ -10,7 +10,7 @@ iota_write(char *path, char *src, ...)
 {
   if (options.dry)
   {
-    printf(" CREATE  %s\n", path);
+    printf(" CREATE %s\n", path);
     return 0;
   }
   va_list args;
@@ -18,7 +18,7 @@ iota_write(char *path, char *src, ...)
   FILE *fp;
   fp = fopen(path, "w");
   if (!fp) pfatalf("Failed to open %s.", path);
-  printf(" CREATE  %s\n", path);
+  printf(" CREATE %s\n", path);
   fprintf(fp, src, args);
   fclose(fp);
   va_end(args);
