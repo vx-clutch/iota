@@ -30,7 +30,8 @@ int bootstrap() {
       system("git init");
     else
       system("git init -q");
-  }
+  } else
+    printf(" INIT\tgit\n");
 
   if (!options.no_markdown)
     iota_write("README.md", "# %s", options.name);
