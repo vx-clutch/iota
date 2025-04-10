@@ -6,7 +6,7 @@
 #include <sys/stat.h>
 
 int iota_write(char *path, char *src, ...) {
-  if (options.dry || options.dry) {
+  if (options.dry || options.verbose) {
     printf(" CREATE\t%s\n", path);
     return 0;
   }
