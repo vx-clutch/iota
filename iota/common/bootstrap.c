@@ -18,21 +18,19 @@ int bootstrap() {
   assert(options.name != NULL);
   iota_mkdir(options.name);
   if (!options.dry) chdir(options.name);
-  if (options.verbose || options.dry) printf(" CHDIR\t%s\n", options.name);
+  else plogf("CHDIR", options.name);
   
   iota_write("AUTHORS", "");
   iota_write("INSTALL", "");
 
   if (options.git) system("git init");
 
-  if (!options.no_markdown)
-    iota_write("README.md", "# %s", options.name);
-  else if (options.no_markdown)
-    iota_write("README", "%s", options.name);
+  if (options.no_markdown) iota_write("README", "%s", options.name);
+  else (options.no_markdown) iota_write("README.md", "# %s", options.name);
 
   iota_mkdir(options.name);
-  if (!options.dry)
-    chdir(options.name);
+  if (!options.dry) chdir(options.name);
+  else plogf("CHDIR", "%s/%s", options.name, options.name);
 
   char *prefix = "main.";
   char *ext = tostring(options.language);
@@ -47,7 +45,8 @@ int bootstrap() {
    * to the root directory of the project because if other function need to
    * write files (aminit.c) they can be certain that they are starting from the
    * right place */
-  chdir(".."); // sets the current working directory to the root level
+  if (!options.dry) chdir(".."); // sets the current working directory to the root level
+  else plogf("CHDIR", options.name);
   return 0;
 }
 /* iota is an opinionated init tool.
