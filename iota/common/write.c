@@ -18,7 +18,7 @@ int iota_write(char *path, char *src, ...) {
     pfatalf("failed to open %s.", path);
   if (options.verbose || options.dry)
     printf(" CREATE\t%s\n", path);
-  fprintf(fp, src, args);
+  vfprintf(fp, src, args);
   fclose(fp);
   va_end(args);
   return 0;
