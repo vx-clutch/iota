@@ -12,13 +12,15 @@ int
 main(int argc, char **argv)
 {
   parse_args(argc, argv);
-  bootstrap();
+  int errno = bootstrap();
   return EXIT_SUCCESS;
 }
 
 int
 cleanup()
 {
+  // TODO: impl
+  // i.e delete the project dir recursivly (on failure)
   return 0;
 }
 
