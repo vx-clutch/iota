@@ -23,10 +23,11 @@ int bootstrap() {
   iota_write("AUTHORS", "");
   iota_write("INSTALL", "");
 
-  if (options.git) system("git init");
+  if (options.git && !options.dry && !options.verbose) system("git init -q");
+  else plogf("GIT", "init");
 
   if (options.no_markdown) iota_write("README", "%s", options.name);
-  else (options.no_markdown) iota_write("README.md", "# %s", options.name);
+  else iota_write("README.md", "# %s", options.name);
 
   iota_mkdir(options.name);
   if (!options.dry) chdir(options.name);

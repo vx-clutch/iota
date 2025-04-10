@@ -45,13 +45,11 @@ parse_args(int argc, char **argv)
   {
     if (argv[i][0] == '-' && strcmp(argv[i], "-no-markdown") == 0)
     {
-      plogf(OK "Found -no-markdown");
       options.no_markdown = 1;
       argv[i] = NULL;
     }
     else if (argv[i][0] == '-' && strncmp(argv[i], "-no-build", 9) == 0)
     {
-      plogf(OK "Found -no-build");
       options.no_build = 1;
       argv[i] = NULL;
     }
@@ -61,7 +59,6 @@ parse_args(int argc, char **argv)
          -1)
   {
     /* This log only gets run after -v has been parsed. */
-    plogf(INFO "opt: '%s'.", argv[optind - 1]);
     switch (opt)
     {
     case 'v':
@@ -95,7 +92,6 @@ parse_args(int argc, char **argv)
    * this is why parse_args must be one of the first function to be called. */
   options.__parsed = 1;
 
-  plogf(INFO "checking positional arguments.");
   if (argc - optind < 1)
   {
     pfatalf("not enough arguments.");
@@ -139,20 +135,17 @@ print_help(void)
   printf("  -v\t\tEnables verbose output.\n");
   /*printf("  -f\t\tTurns on force mode, this will disable certain
    * checks.\n");*/
-  plogf(INFO "Exiting");
   exit(0);
 }
 
 void
 print_version()
 {
-  plogf(INFO "call to print_version");
   printf(
       "vtc (VTC) %s 2024-%d (%s)\nCopyright (C) %d vx-clutch\nThis is free "
       "software; see the source for copying conditions. There is NO\nwarranty; "
       "not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE\n",
       PACKAGE_VERSION, COPYRIGHT_YEAR, PLATFORM, COPYRIGHT_YEAR);
-  plogf(INFO "Exiting");
   exit(0);
 }
 
