@@ -16,22 +16,14 @@ int errno = 0;
 
 int bootstrap() {
   assert(options.name != NULL);
-  FILE *fp;
   iota_mkdir(options.name);
-  if (!options.dry)
-    chdir(options.name);
-  if (options.verbose || options.dry)
-    printf(" CHDIR\t%s\n", options.name);
+  if (!options.dry) chdir(options.name);
+  if (options.verbose || options.dry) printf(" CHDIR\t%s\n", options.name);
+  
   iota_write("AUTHORS", "");
   iota_write("INSTALL", "");
 
-  if (!options.dry) {
-    if (options.verbose)
-      system("git init");
-    else
-      system("git init -q");
-  } else
-    printf(" INIT\tgit\n");
+  if (options.git) system("git init");
 
   if (!options.no_markdown)
     iota_write("README.md", "# %s", options.name);
