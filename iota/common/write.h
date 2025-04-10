@@ -3,4 +3,6 @@
 
 int iota_write(char *, char *, ...);
 
+int iota_mkdir(char *);
+
 #endif

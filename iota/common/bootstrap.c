@@ -4,45 +4,42 @@
 #include "bootstrap.h"
 #include "../init.h"
 #include "../options.h"
-#include "../syslog/error.h"
 #include "write.h"
 #include <assert.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
 
-struct stat st = {0};
-
 int errno = 0;
 
-int
-bootstrap()
-{
+int bootstrap() {
   assert(options.name != NULL);
   FILE *fp;
-  int err;
-  if (stat(options.name, &st) == -1)
-  {
-    if (!options.dry) mkdir(options.name, 0700);
-  }
-  else
-    pfatalf("directory with the name %s already exists.", options.name);
-  if (!options.dry) err = chdir(options.name);
-  if (err) perrorf(strerror(err));
+  iota_mkdir(options.name);
+  if (!options.dry)
+    chdir(options.name);
+  if (options.verbose || options.dry)
+    printf(" CHDIR\t%s\n", options.name);
   iota_write("AUTHORS", "");
   iota_write("INSTALL", "");
+
+  if (!options.dry) {
+    if (options.verbose)
+      system("git init");
+    else
+      system("git init -q");
+  }
 
   if (!options.no_markdown)
     iota_write("README.md", "# %s", options.name);
   else if (options.no_markdown)
     iota_write("README", "%s", options.name);
 
+  iota_mkdir(options.name);
   if (!options.dry)
-  {
-    mkdir(options.name, 0700);
     chdir(options.name);
-  }
 
   char *prefix = "main.";
   char *ext = tostring(options.language);

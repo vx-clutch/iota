@@ -2,10 +2,7 @@
 // See end of file for extended copyright information.
 
 #include "common/bootstrap.h"
-#include "init.h"
-#include "options.h"
 #include "parse_args.h"
-#include "syslog/error.h"
 #include <stdlib.h>
 
 int
@@ -16,10 +13,6 @@ main(int argc, char **argv)
 {
   parse_args(argc, argv);
   bootstrap();
-  slog("Initial files written.");
-  if (!options.no_build && options.language == LANG_c)
-    slog("Autotools build system initialized.");
-  slog("Done.");
   return EXIT_SUCCESS;
 }
 

@@ -32,7 +32,6 @@ pfatalf(const char *format, ...);
 void
 perrorf(const char *format, ...);
 
-
 // int
 // pwarning(const char *message);
 
@@ -40,13 +39,15 @@ void
 pwarningf(const char *format, ...);
 
 // #define pdebug(desc, message) __pdebug(__LINE__, __FILE__, desc, message)
-#define pdebugf(desc, message, ...) __pdebugf(__LINE__, __FILE__, desc, message, ##__VA_ARGS__)
+#define pdebugf(desc, message, ...)                                            \
+  __pdebugf(__LINE__, __FILE__, desc, message, ##__VA_ARGS__)
 
 // int
 // __pdebug(int line, const char *file, const char *desc, const char *message);
 
 int
-__pdebugf(int line, const char *file, const char *desc, const char *format, ...);
+__pdebugf(int line, const char *file, const char *desc, const char *format,
+          ...);
 
 // void
 // plog(int status, const char *message);
@@ -60,11 +61,6 @@ plogf(int status, const char *format, ...);
 
 void
 pnotef(const char *format, ...);
-
-
-
-#define slog(src) printf("==> %s\n", src)
-
 
 #endif
 
@@ -97,4 +93,3 @@ pnotef(const char *format, ...);
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-
