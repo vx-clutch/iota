@@ -15,18 +15,20 @@
 // }
 
 int
-__pdebugf(int line, const char *file, const char *desc, const char *format, ...)
+__pdebugf(int line, const char *file, const char *desc, const char *format,
+	  ...)
 {
-  if (!options.debug) return 0;
-  va_list args;
-  va_start(args, format);
-  printf("%s%s%s: %sdebug: %s:%d%s: ", WHITE, PACKAGE_NAME, RESET, WHITE, file,
-         line, RESET);
-  fprintf(stdout, "%s: ", desc);
-  vfprintf(stdout, format, args);
-  putchar('\n');
-  va_end(args);
-  return 0;
+	if (!options.debug)
+		return 0;
+	va_list args;
+	va_start(args, format);
+	printf("%s%s%s: %sdebug: %s:%d%s: ", WHITE, PACKAGE_NAME, RESET, WHITE,
+	       file, line, RESET);
+	fprintf(stdout, "%s: ", desc);
+	vfprintf(stdout, format, args);
+	putchar('\n');
+	va_end(args);
+	return 0;
 }
 
 /* vtc is a simple and extensible compiler.
@@ -40,8 +42,8 @@ __pdebugf(int line, const char *file, const char *desc, const char *format, ...)
  * 1. Redistributions of source code must retain the above copyright notice,
  * this list of conditions, and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright notice,
- * this list of conditions, and the following disclaimer in the documentation or
- * other materials provided with the distribution.
+ * this list of conditions, and the following disclaimer in the documentation
+ * or other materials provided with the distribution.
  * 3. Neither the name of vx-clutch nor the names of its contributors may be
  * used to endorse or promote products derived from this software without
  * specific prior written permission.

@@ -11,17 +11,17 @@ cleanup();
 int
 main(int argc, char **argv)
 {
-  parse_args(argc, argv);
-  int errno = bootstrap();
-  return EXIT_SUCCESS;
+	parse_args(argc, argv);
+	int errno = bootstrap();
+	return EXIT_SUCCESS;
 }
 
 int
 cleanup()
 {
-  // TODO: impl
-  // i.e delete the project dir recursivly (on failure)
-  return 0;
+	// TODO: impl
+	// i.e delete the project dir recursivly (on failure)
+	return 0;
 }
 
 /* iota is an opinionated init tool.
@@ -35,8 +35,8 @@ cleanup()
  * 1. Redistributions of source code must retain the above copyright notice,
  * this list of conditions, and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright notice,
- * this list of conditions, and the following disclaimer in the documentation or
- * other materials provided with the distribution.
+ * this list of conditions, and the following disclaimer in the documentation
+ * or other materials provided with the distribution.
  * 3. Neither the name of vx-clutch nor the names of its contributors may be
  * used to endorse or promote products derived from this software without
  * specific prior written permission.

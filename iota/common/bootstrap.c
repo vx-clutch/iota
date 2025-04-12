@@ -15,51 +15,54 @@
 
 int errno = 0;
 
-int bootstrap() {
-  assert(options.name != NULL);
-  iota_mkdir(options.name);
-  if (!options.dry)
-    chdir(options.name);
-  else
-    plogf("CHDIR", options.name);
+int
+bootstrap()
+{
+	assert(options.name != NULL);
+	iota_mkdir(options.name);
+	if (!options.dry)
+		chdir(options.name);
+	else
+		plogf("CHDIR", options.name);
 
-  iota_write("AUTHORS", "");
-  iota_write("INSTALL", "");
+	iota_write("AUTHORS", "");
+	iota_write("INSTALL", "");
 
-  if (options.git && !options.dry && !options.verbose)
-    system("git init -q");
-  else
-    plogf("GIT", "init");
+	if (options.git && !options.dry && !options.verbose)
+		system("git init -q");
+	else
+		plogf("GIT", "init");
 
-  if (options.no_markdown)
-    iota_write("README", "%s", options.name);
-  else
-    iota_write("README.md", "# %s", options.name);
+	if (options.no_markdown)
+		iota_write("README", "%s", options.name);
+	else
+		iota_write("README.md", "# %s", options.name);
 
-  iota_mkdir(options.name);
-  if (!options.dry)
-    chdir(options.name);
-  else
-    plogf("CHDIR", "%s/%s", options.name, options.name);
+	iota_mkdir(options.name);
+	if (!options.dry)
+		chdir(options.name);
+	else
+		plogf("CHDIR", "%s/%s", options.name, options.name);
 
-  char *prefix = "main.";
-  char *ext = tostring(options.language);
-  size_t len = strlen(prefix) + strlen(ext);
+	char *prefix = "main.";
+	char *ext = tostring(options.language);
+	size_t len = strlen(prefix) + strlen(ext);
 
-  char *path = malloc(len);
-  strcpy(path, prefix);
-  strcat(path, ext);
+	char *path = malloc(len);
+	strcpy(path, prefix);
+	strcat(path, ext);
 
-  iota_write(path, "%s", LANG_SRC[options.language]);
-  /* before returning it is important to set the current working directory back
-   * to the root directory of the project because if other function need to
-   * write files (aminit.c) they can be certain that they are starting from the
-   * right place */
-  if (!options.dry)
-    chdir(".."); // sets the current working directory to the root level
-  else
-    plogf("CHDIR", options.name);
-  return 0;
+	iota_write(path, "%s", LANG_SRC[options.language]);
+	/* before returning it is important to set the current working
+	 * directory back to the root directory of the project because if other
+	 * function need to write files (aminit.c) they can be certain that
+	 * they are starting from the right place */
+	if (!options.dry)
+		chdir(".."); // sets the current working directory to the root
+			     // level
+	else
+		plogf("CHDIR", options.name);
+	return 0;
 }
 /* iota is an opinionated init tool.
  * Copyright (C) 2025 vx-clutch
@@ -72,8 +75,8 @@ int bootstrap() {
  * 1. Redistributions of source code must retain the above copyright notice,
  * this list of conditions, and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright notice,
- * this list of conditions, and the following disclaimer in the documentation or
- * other materials provided with the distribution.
+ * this list of conditions, and the following disclaimer in the documentation
+ * or other materials provided with the distribution.
  * 3. Neither the name of vx-clutch nor the names of its contributors may be
  * used to endorse or promote products derived from this software without
  * specific prior written permission.

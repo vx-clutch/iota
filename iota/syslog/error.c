@@ -6,7 +6,8 @@
 // int
 // perror(const char *message)
 // {
-//   fprintf(stderr, "%s%s%s: %serror%s: %s\n", WHITE, PACKAGE_NAME, RESET, RED,
+//   fprintf(stderr, "%s%s%s: %serror%s: %s\n", WHITE, PACKAGE_NAME, RESET,
+//   RED,
 //           RESET, message);
 //   return 0;
 // }
@@ -14,13 +15,13 @@
 void
 perrorf(const char *format, ...)
 {
-  va_list args;
-  va_start(args, format);
-  fprintf(stderr, "%s%s%s: %serror%s: ", WHITE, PACKAGE_NAME, RESET, RED,
-          RESET);
-  vfprintf(stderr, format, args);
-  fprintf(stderr, "\n");
-  va_end(args);
+	va_list args;
+	va_start(args, format);
+	fprintf(stderr, "%s%s%s: %serror%s: ", WHITE, PACKAGE_NAME, RESET, RED,
+		RESET);
+	vfprintf(stderr, format, args);
+	fprintf(stderr, "\n");
+	va_end(args);
 }
 
 /* vtc is a simple and extensible compiler.
@@ -34,8 +35,8 @@ perrorf(const char *format, ...)
  * 1. Redistributions of source code must retain the above copyright notice,
  * this list of conditions, and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright notice,
- * this list of conditions, and the following disclaimer in the documentation or
- * other materials provided with the distribution.
+ * this list of conditions, and the following disclaimer in the documentation
+ * or other materials provided with the distribution.
  * 3. Neither the name of vx-clutch nor the names of its contributors may be
  * used to endorse or promote products derived from this software without
  * specific prior written permission.
