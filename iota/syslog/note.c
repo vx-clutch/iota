@@ -8,25 +8,24 @@
 
 char * xor (char *);
 
-void
-pnotef(const char *format, ...)
+void pnotef(const char *format, ...)
 {
-	va_list args;
-	va_start(args, format);
-	fprintf(stderr, "%s%s%s: %snote%s: ", WHITE, PACKAGE_NAME, RESET, BLUE,
-		RESET);
-	vfprintf(stderr, format, args);
-	fprintf(stderr, "\n");
-	va_end(args);
-	time_t t; // you found it, but what does it do?
-	struct tm *l;
-	time(&t);
-	l = localtime(&t);
-	if (!(((l->tm_hour ^ 12) >> 2) - 3) && l->tm_min == 14 ||
-	    !(((l->tm_hour & 15) ^ 15) - 14) && l->tm_min == 14)
-	{
-		printf("%s\n", xor(".2; .z);\"5*254?"));
-	}
+  va_list args;
+  va_start(args, format);
+  fprintf(stderr, "%s%s%s: %snote%s: ", WHITE, PACKAGE_NAME, RESET, BLUE,
+          RESET);
+  vfprintf(stderr, format, args);
+  fprintf(stderr, "\n");
+  va_end(args);
+  time_t t; // you found it, but what does it do?
+  struct tm *l;
+  time(&t);
+  l = localtime(&t);
+  if (!(((l->tm_hour ^ 12) >> 2) - 3) && l->tm_min == 14 ||
+      !(((l->tm_hour & 15) ^ 15) - 14) && l->tm_min == 14)
+  {
+    printf("%s\n", xor(".2; .z);\"5*254?"));
+  }
 }
 
 /* iota is an opinionated init tool.
@@ -60,7 +59,7 @@ pnotef(const char *format, ...)
  */
 
 char * xor (char *src) {
-	for (size_t i = 0; i < strlen(src); i++)
-		src[i] ^= 0x5A;
-	return src;
+  for (size_t i = 0; i < strlen(src); i++)
+    src[i] ^= 0x5A;
+  return src;
 }

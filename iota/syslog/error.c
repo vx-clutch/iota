@@ -12,16 +12,15 @@
 //   return 0;
 // }
 
-void
-perrorf(const char *format, ...)
+void perrorf(const char *format, ...)
 {
-	va_list args;
-	va_start(args, format);
-	fprintf(stderr, "%s%s%s: %serror%s: ", WHITE, PACKAGE_NAME, RESET, RED,
-		RESET);
-	vfprintf(stderr, format, args);
-	fprintf(stderr, "\n");
-	va_end(args);
+  va_list args;
+  va_start(args, format);
+  fprintf(stderr, "%s%s%s: %serror%s: ", WHITE, PACKAGE_NAME, RESET, RED,
+          RESET);
+  vfprintf(stderr, format, args);
+  fprintf(stderr, "\n");
+  va_end(args);
 }
 
 /* vtc is a simple and extensible compiler.

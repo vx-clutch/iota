@@ -5,23 +5,20 @@
 #include "parse_args.h"
 #include <stdlib.h>
 
-int
-cleanup();
+int cleanup();
 
-int
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	parse_args(argc, argv);
-	int errno = bootstrap();
-	return EXIT_SUCCESS;
+  parse_args(argc, argv);
+  int errno = bootstrap();
+  return EXIT_SUCCESS;
 }
 
-int
-cleanup()
+int cleanup()
 {
-	// TODO: impl
-	// i.e delete the project dir recursivly (on failure)
-	return 0;
+  // TODO: impl
+  // i.e delete the project dir recursivly (on failure)
+  return 0;
 }
 
 /* iota is an opinionated init tool.

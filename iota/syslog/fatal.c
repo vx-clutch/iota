@@ -11,17 +11,16 @@
 //   exit(EXIT_FAILURE);
 // }
 
-void
-pfatalf(const char *format, ...)
+void pfatalf(const char *format, ...)
 {
-	va_list args;
-	va_start(args, format);
-	fprintf(stderr, "%s%s%s: %sfatal error%s: ", WHITE, PACKAGE_NAME,
-		RESET, RED, RESET);
-	vfprintf(stderr, format, args);
-	fprintf(stderr, "\n");
-	va_end(args);
-	exit(EXIT_FAILURE);
+  va_list args;
+  va_start(args, format);
+  fprintf(stderr, "%s%s%s: %sfatal error%s: ", WHITE, PACKAGE_NAME,
+          RESET, RED, RESET);
+  vfprintf(stderr, format, args);
+  fprintf(stderr, "\n");
+  va_end(args);
+  exit(EXIT_FAILURE);
 }
 
 /* vtc is a simple and extensible compiler.

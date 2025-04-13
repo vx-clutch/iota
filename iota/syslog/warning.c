@@ -11,16 +11,15 @@
 //   return 0;
 // }
 
-void
-pwarningf(const char *format, ...)
+void pwarningf(const char *format, ...)
 {
-	va_list args;
-	va_start(args, format);
-	fprintf(stderr, "%s%s%s: %swarning%s: ", WHITE, PACKAGE_NAME, RESET,
-		PURPLE, RESET);
-	vfprintf(stderr, format, args);
-	fprintf(stderr, "\n");
-	va_end(args);
+  va_list args;
+  va_start(args, format);
+  fprintf(stderr, "%s%s%s: %swarning%s: ", WHITE, PACKAGE_NAME, RESET,
+          PURPLE, RESET);
+  vfprintf(stderr, format, args);
+  fprintf(stderr, "\n");
+  va_end(args);
 }
 
 /* vtc is a simple and extensible compiler.
