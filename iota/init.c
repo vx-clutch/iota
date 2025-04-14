@@ -12,8 +12,12 @@ tostring(lang_t lang)
 #define lang(name, src) \
   case LANG_##name:     \
     return #name;
+#define build(name, src) \
+  case LANG_BUILD_##name: \
+    return "build_" #name;
 #include "language.objects/clang.lo"
 #undef lang
+#undef build
 #undef new
   case LANG_COUNT:
     pfatalf("getext called with LANG_COUNT.");

@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <sys/stat.h>
 
-int iota_write(char *path, char *src, ...)
+int iota_write(char *path, char *format, ...)
 {
   if (options.dry || options.verbose)
   {
@@ -13,14 +13,14 @@ int iota_write(char *path, char *src, ...)
     return 0;
   }
   va_list args;
-  va_start(args, src);
+  va_start(args, format);
   FILE *fp;
   fp = fopen(path, "w");
   if (!fp)
     pfatalf("failed to open %s.", path);
   if (options.verbose || options.dry)
     printf(" CREATE\t%s\n", path);
-  vfprintf(fp, src, args);
+  vfprintf(fp, format, args);
   fclose(fp);
   va_end(args);
   return 0;

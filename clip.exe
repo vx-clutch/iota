@@ -1,0 +1,15 @@
+In file included from syslog/../options.h:10,
+                 from syslog/error.h:7,
+                 from syslog/warning.c:4:
+syslog/../init.h:41:1: error: expected expression before ‘;’ token
+   41 | ;
+      | ^
+syslog/../init.h:31:20: warning: ‘PRE_BUILD_CMD’ defined but not used [-Wunused-variable]
+   31 | static const char *PRE_BUILD_CMD =
+      |                    ^~~~~~~~~~~~~
+syslog/../init.h:18:20: warning: ‘LANG_SRC’ defined but not used [-Wunused-variable]
+   18 | static const char *LANG_SRC[LANG_COUNT] = {
+      |                    ^~~~~~~~
+make[2]: *** [Makefile:444: syslog/warning.o] Error 1
+make[1]: *** [Makefile:294: all] Error 2
+make: *** [Makefile:385: all-recursive] Error 1
